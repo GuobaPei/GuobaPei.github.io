@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jieyuan Pei — 裴杰远</title>
+<meta name="description" content="Jieyuan Pei (裴杰远) — undergraduate researcher at Zhejiang University of Technology. Neural operators, spatial–spectral fusion, embodied VLA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#16161a;
+  --paper:#fbf7ec;
+  --panel:#fffdf7;
+  --mute:#6d6860;
+  --red:#e4372e;  --blue:#2f6be0;  --green:#12a05c;
+  --purple:#7b4ce0; --orange:#f2892b; --teal:#0d9b9b; --pink:#e0479e;
+  --yellow:#ffd23f;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --ink:#efe9dc; --paper:#14151a; --panel:#1e2027; --mute:#a19c92;
+    --red:#ff6a58; --blue:#6d9bff; --green:#37cd85; --purple:#a982ff;
+    --orange:#ffab52; --teal:#3ecfcf; --pink:#ff76bd; --yellow:#ffdd6b;
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font:17px/1.6 "Comic Neue","Chalkboard SE","Comic Sans MS","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  background-image:radial-gradient(rgba(120,110,95,.22) 1px, transparent 1.1px);
+  background-size:10px 10px;
+}
+@media (prefers-color-scheme: dark){
+  body{background-image:radial-gradient(rgba(239,233,220,.14) 1px, transparent 1.1px)}
+}
+.wrap{max-width:1040px;margin:0 auto;padding:44px 20px 70px}
+a{color:var(--ink)}
+
+/* ---------- comic panel ---------- */
+.panel{
+  position:relative;background:var(--panel);border:3px solid var(--ink);
+  box-shadow:8px 8px 0 var(--ink);padding:24px 26px;margin:0 0 38px;
+}
+.panel::before{ /* colored screentone inside the panel */
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:radial-gradient(var(--c,var(--red)) 1.1px, transparent 1.2px);
+  background-size:11px 11px;opacity:.13;
+}
+.panel>*{position:relative}
+.tiltL{transform:rotate(-.4deg)} .tiltR{transform:rotate(.35deg)}
+
+/* ---------- comic lettering ---------- */
+.toon{font-family:"Bangers","Chalkboard SE","Comic Sans MS",cursive;letter-spacing:.02em;font-weight:400}
+h1{
+  margin:0;font-size:clamp(46px,10vw,84px);line-height:.92;
+  font-family:"Bangers","Chalkboard SE",cursive;letter-spacing:.015em;
+  color:var(--yellow);
+  text-shadow:3px 3px 0 var(--ink), -2px -2px 0 var(--ink), 2px -2px 0 var(--ink),
+              -2px 2px 0 var(--ink), 6px 6px 0 var(--red);
+}
+.cn{font-size:clamp(19px,3.4vw,24px);font-weight:700;letter-spacing:.3em;color:var(--mute);margin-top:12px}
+
+.chap{display:flex;align-items:center;gap:12px;margin:0 0 20px}
+.chap b{
+  font-family:"Bangers","Chalkboard SE",cursive;font-weight:400;
+  background:var(--c);color:#fff;font-size:23px;letter-spacing:.1em;
+  padding:2px 14px 1px;border:3px solid var(--ink);
+  box-shadow:4px 4px 0 var(--ink);transform:rotate(-1.2deg);white-space:nowrap;
+}
+.chap i{flex:1;height:4px;background:var(--ink)}
+.chap em{font-style:italic;font-size:14px;color:var(--mute)}
+
+/* ---------- hero ---------- */
+.hero{display:flex;gap:28px;align-items:flex-start;flex-wrap:wrap}
+.shot{
+  flex:0 0 300px;width:300px;height:225px;object-fit:cover;object-position:50% 40%;
+  border:3px solid var(--ink);box-shadow:6px 6px 0 var(--blue);
+  filter:saturate(1.12) contrast(1.05);background:var(--paper);
+}
+.hero-txt{flex:1 1 340px;min-width:270px}
+.affil{margin:16px 0 0;font-size:16px}
+.affil b{font-weight:700}
+.affil span{color:var(--mute)}
+.hl{background:linear-gradient(transparent 58%,var(--yellow) 58%,var(--yellow) 94%,transparent 94%);font-weight:700}
+
+.bubble{
+  position:relative;margin:24px 0 0;padding:15px 19px;
+  border:3px solid var(--ink);border-radius:20px;background:var(--panel);font-size:16.5px;
+}
+.bubble::before,.bubble::after{content:"";position:absolute;left:36px;width:0;height:0;border-style:solid}
+.bubble::before{bottom:-19px;border-width:19px 16px 0 0;border-color:var(--ink) transparent transparent transparent}
+.bubble::after{bottom:-14px;border-width:14px 11px 0 0;border-color:var(--panel) transparent transparent transparent}
+
+.links{display:flex;flex-wrap:wrap;gap:9px;margin:28px 0 0}
+.links a{
+  font-family:"Bangers","Chalkboard SE",cursive;font-size:19px;letter-spacing:.07em;
+  display:inline-block;border:3px solid var(--ink);padding:2px 14px 0;
+  text-decoration:none;color:var(--ink);background:var(--panel);box-shadow:4px 4px 0 var(--ink);
+}
+.links a:nth-child(1){background:var(--red);color:#fff}
+.links a:nth-child(2){background:var(--blue);color:#fff}
+.links a:nth-child(3){background:var(--green);color:#fff}
+.links a:nth-child(4){background:var(--yellow);color:var(--ink)}
+.links a:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+
+/* ---------- research cards ---------- */
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+.card{border:3px solid var(--ink);padding:16px;background:var(--panel);box-shadow:5px 5px 0 var(--c)}
+.card h3{margin:0;font-family:"Bangers","Chalkboard SE",cursive;font-weight:400;font-size:25px;
+  letter-spacing:.03em;color:var(--c);-webkit-text-stroke:.5px var(--ink)}
+.card p{margin:8px 0 0;font-size:15px;color:var(--mute)}
+
+/* ---------- paper panels ---------- */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.pcard{display:flex;flex-direction:column;border:3px solid var(--ink);background:var(--panel);
+  box-shadow:5px 5px 0 var(--c)}
+.pfig{display:block;background:#fff;border-bottom:3px solid var(--ink);padding:6px}
+.pfig img{display:block;width:100%;height:auto;max-height:230px;object-fit:contain}
+.pbody{padding:13px 15px 15px}
+.pt{margin:0;font-size:17px;font-weight:700;line-height:1.3}
+.pt a{text-decoration:none;border-bottom:3px solid var(--c)}
+.pa{margin:6px 0 0;font-size:13.5px;color:var(--mute);line-height:1.45}
+.pa u{text-decoration:none;color:var(--ink);font-weight:700}
+.pn{margin:8px 0 0;font-size:14px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 8px}
+.tag{font-family:"Bangers","Chalkboard SE",cursive;font-size:15px;letter-spacing:.06em;
+  border:2.5px solid var(--ink);padding:1px 9px 0;background:var(--c);color:#fff;line-height:1.3}
+.tag--role{background:var(--panel);color:var(--ink)}
+.tag--wip{background:var(--panel);color:var(--mute);border-style:dashed}
+.plink{margin:9px 0 0;font-size:13.5px}
+.plink a{color:var(--c);font-weight:700}
+
+/* in-progress row, no figure */
+.wip{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-top:20px}
+.wipc{border:3px dashed var(--ink);padding:14px 16px;background:transparent}
+
+/* ---------- awards ---------- */
+.agrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+.acard{border:3px solid var(--ink);background:var(--panel);box-shadow:5px 5px 0 var(--c);
+  padding:16px 16px 14px;text-align:center}
+.alogo{height:82px;display:flex;align-items:center;justify-content:center;
+  background:#fff;border:2.5px solid var(--ink);margin-bottom:13px}
+.alogo img{max-width:88%;max-height:66px;object-fit:contain}
+.aprize{margin:0;font-family:"Bangers","Chalkboard SE",cursive;font-size:24px;letter-spacing:.04em;
+  line-height:1.15;color:var(--c);-webkit-text-stroke:.5px var(--ink)}
+.aname{margin:5px 0 0;font-size:14.5px;line-height:1.35}
+.ayear{margin:8px 0 0;font-family:"Bangers","Chalkboard SE",cursive;font-size:18px;
+  letter-spacing:.1em;color:var(--mute)}
+.note{font-size:14px;color:var(--mute);margin:20px 0 0;text-align:center}
+
+footer{text-align:center;font-size:15px;color:var(--mute)}
+footer .toon{font-size:24px;color:var(--ink)}
+
+@media(max-width:560px){
+  .panel{padding:18px 16px;box-shadow:5px 5px 0 var(--ink)}
+  .tiltL,.tiltR{transform:none}
+  .shot{flex:0 0 100%;width:100%;height:200px}
+  h1{text-shadow:2px 2px 0 var(--ink),-1.5px -1.5px 0 var(--ink),1.5px -1.5px 0 var(--ink),-1.5px 1.5px 0 var(--ink),6px 6px 0 var(--red)}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ================= HERO ================= -->
+  <section class="panel tiltL hero" style="--c:var(--blue)">
+    <img class="shot" src="me.jpg" alt="Photo of Jieyuan Pei">
+    <div class="hero-txt">
+      <h1>Jieyuan&nbsp;Pei</h1>
+      <div class="cn">裴 杰 远</div>
+      <p class="affil">
+        <b>B.Eng. Intelligent Science &amp; Technology</b><br>
+        <span>Zhejiang University of Technology · expected June 2027</span><br>
+        <span>Research intern · AIR, Tsinghua University</span>
+      </p>
+      <div class="bubble">
+        I build <span class="hl">structured, generalizable</span> learning machinery — neural
+        operators for physics, spatial–spectral operators for imaging, and memory + test-time
+        adaptation for embodied agents. Applying for <b>2027 Fall MPhil / PhD</b>.
+      </div>
+      <div class="links">
+        <a href="mailto:peijieyuan@zjut.edu.cn">Email</a>
+        <a href="https://scholar.google.com/citations?user=xAAOO_0AAAAJ&amp;hl=en">Scholar</a>
+        <a href="https://github.com/GuobaPei">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= RESEARCH ================= -->
+  <section class="panel tiltR" style="--c:var(--green)">
+    <div class="chap" style="--c:var(--green)"><b>Research</b><i></i><em>three threads, one method</em></div>
+    <div class="grid3">
+      <div class="card" style="--c:var(--red)">
+        <h3>Embodied VLA</h3>
+        <p>Robot memory, long-horizon tasks, test-time training, world models, and decision
+        generalization for vision–language–action policies.</p>
+      </div>
+      <div class="card" style="--c:var(--blue)">
+        <h3>AI for Physics</h3>
+        <p>Neural operators, PDE surrogates, engineering simulation, and scientific ML that
+        transfers across geometries and resolutions.</p>
+      </div>
+      <div class="card" style="--c:var(--green)">
+        <h3>AI for Remote Sensing</h3>
+        <p>Spatial–spectral fusion, cross-scale and degradation modelling, operator-based
+        imaging under realistic transfer.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PAPERS ================= -->
+  <section class="panel" style="--c:var(--purple)">
+    <div class="chap" style="--c:var(--purple)"><b>Papers</b><i></i><em>bold = me · * equal contribution · click a panel for the full figure</em></div>
+
+    <div class="pgrid">
+
+      <article class="pcard" style="--c:var(--purple)">
+        <a class="pfig" href="figs/hno.png"><img src="figs/hno.png" alt="HNO teaser: near/far-field decomposition, hierarchical tree, and its embedding on a Lorentz hyperboloid"></a>
+        <div class="pbody">
+          <div class="tags"><span class="tag">ICML 2026</span></div>
+          <p class="pt"><a href="https://guobapei.github.io/Hyperbolic-Neural-Operator/">Hyperbolic Neural Operator</a></p>
+          <p class="pa"><u>Jieyuan Pei</u>, Zhuoxuan Li, Wei Li, Haobo Zhang, Jiawei Jiang, Jianwei Zheng</p>
+          <p class="pn">Up to ~40% lower relative ℓ<sub>2</sub> error on PDEBench / CFD, with 2×+
+          less training time and memory.</p>
+          <p class="plink"><a href="https://guobapei.github.io/Hyperbolic-Neural-Operator/">Project page →</a>
+          &nbsp;<a href="https://github.com/GuobaPei/Hyperbolic-Neural-Operator">Code →</a></p>
+        </div>
+      </article>
+
+      <article class="pcard" style="--c:var(--red)">
+        <a class="pfig" href="figs/s3o.png"><img src="figs/s3o.png" alt="S3O architecture: multi-scale embedding, S3O backbone, and the hard location selection block"></a>
+        <div class="pbody">
+          <div class="tags"><span class="tag">CVPR 2026 Findings</span></div>
+          <p class="pt"><a href="https://github.com/GuobaPei/Selective-Spatial-Spectral-Operator">S<sup>3</sup>O: Selective Spatial–Spectral Operator for Cross-Scale Fusion</a></p>
+          <p class="pa"><u>Jieyuan Pei</u><sup>*</sup>, Wei Li<sup>*</sup>, Zhuoxuan Li, Junwei Zhu, Meiyi Lu, Jiawei Jiang, Chenyu Wang, Jianwei Zheng</p>
+          <p class="pn">0.3–1.4 dB gains on three datasets at up to 4× lower compute than heavy
+          Transformer / Mamba baselines.</p>
+          <p class="plink"><a href="https://github.com/GuobaPei/Selective-Spatial-Spectral-Operator">Code →</a></p>
+
+        </div>
+      </article>
+
+      <article class="pcard" style="--c:var(--blue)">
+        <a class="pfig" href="figs/lso.png"><img src="figs/lso.png" alt="Latent spectral operator pipeline: patchify, coordinate-to-latent projection, solve on a trigonometric basis, project back"></a>
+        <div class="pbody">
+          <div class="tags"><span class="tag">ICML 2026</span></div>
+          <p class="pt"><a href="https://weili419.github.io/latent-spectral-operators/">Solving Spatial–Spectral Fusion with Latent Spectral Operators</a></p>
+          <p class="pa">Wei Li, <u>Jieyuan Pei</u>, Junnan Xu, Xuanfeng Ding, Junwei Zhu, Wanjun Chen, Jianwei Zheng</p>
+          <p class="pn">+0.160 PSNR on CAVE ×4/×8 with 4.4% / 6.9% SAM reduction.</p>
+          <p class="plink"><a href="https://weili419.github.io/latent-spectral-operators/">Project page →</a></p>
+        </div>
+      </article>
+
+      <article class="pcard" style="--c:var(--orange)">
+        <a class="pfig" href="figs/starfus.png"><img src="figs/starfus.png" alt="StarFus-Net U-Net with asymmetric spatial measurement and spectral prior paths"></a>
+        <div class="pbody">
+          <div class="tags"><span class="tag">ICASSP 2026</span></div>
+          <p class="pt"><a href="https://doi.org/10.1109/ICASSP55912.2026.11461717">Asymmetric StarFus: Learning Incoherent Measurements for Semantics-Aware Spatial–Spectral Fusion</a></p>
+          <p class="pa"><u>Jieyuan Pei</u>, Wei Li, Zhuoxuan Li, Junwei Zhu, Chuangjie Fang, Jianwei Zheng</p>
+          <p class="plink"><a href="https://doi.org/10.1109/ICASSP55912.2026.11461717">Paper →</a>
+          &nbsp;<a href="https://github.com/GuobaPei/STARFUS">Code →</a></p>
+        </div>
+      </article>
+
+      <article class="pcard" style="--c:var(--green)">
+        <a class="pfig" href="figs/tgrs.png"><img src="figs/tgrs.png" alt="Five-stage fusion pipeline with parallel spatial and frequency branches and a semantic transformer"></a>
+        <div class="pbody">
+          <div class="tags"><span class="tag">IEEE TGRS</span></div>
+          <p class="pt"><a href="https://doi.org/10.1109/TGRS.2026.3657766">S<sup>2</sup>TA-Fuse: Semantic-Superpixel Tokenized Attention for Spatial–Spectral Fusion</a></p>
+          <p class="pa">Jiawei Jiang<sup>*</sup>, Wei Li<sup>*</sup>, <u>Jieyuan Pei</u>, Junwei Zhu, Honghui Xu, Yuchao Feng, Jianwei Zheng</p>
+          <p class="plink"><a href="https://doi.org/10.1109/TGRS.2026.3657766">Paper →</a></p>
+        </div>
+      </article>
+
+      <article class="pcard" style="--c:var(--teal)">
+        <a class="pfig" href="figs/kdd.png"><img src="figs/kdd.png" alt="Mag-Mamba framework: magnetic phase encoder feeding a Mamba layer with rotation control"></a>
+        <div class="pbody">
+          <div class="tags"><span class="tag">KDD 2026 · Oral</span></div>
+          <p class="pt"><a href="https://arxiv.org/abs/2603.00053">Mag-Mamba: Modeling Coupled Spatiotemporal Asymmetry for POI Recommendation</a></p>
+          <p class="pa">Zhuoxuan Li<sup>*</sup>, Tangwei Ye<sup>*</sup>, <u>Jieyuan Pei</u>, Haina Liang, Zhongyuan Lai, Zihan Liu, Yiming Wu, Qi Zhang, Liang Hu</p>
+          <p class="plink"><a href="https://arxiv.org/abs/2603.00053">arXiv →</a></p>
+        </div>
+      </article>
+
+      <article class="pcard" style="--c:var(--pink)">
+        <a class="pfig" href="figs/robomem.png"><img src="figs/robomem.png" alt="RoboMemArena overview: annotation pipeline, dataset statistics, baseline comparison, and real-world evaluation"></a>
+        <div class="pbody">
+          <div class="tags"><span class="tag">arXiv:2605.10921</span></div>
+          <p class="pt"><a href="https://arxiv.org/abs/2605.10921">RoboMemArena: A Comprehensive and Challenging Robotic Memory Benchmark</a></p>
+          <p class="pa">Huashuo Lei<sup>*</sup>, Wenxuan Song<sup>*</sup>, Huarui Zhang, <u>Jieyuan Pei</u>, Jiayi Chen, Haodong Yan, Han Zhao, Pengxiang Ding, Zhipeng Zhang, Lida Huang, Donglin Wang, Yan Wang, Haoang Li</p>
+          <p class="pn">26 tasks, 2,600 demonstrations, 2.8M frames; mean trajectory 1,076 steps.</p>
+          <p class="plink"><a href="https://arxiv.org/abs/2605.10921">arXiv →</a>
+          &nbsp;<a href="https://robomemarena.github.io">Project page →</a>
+          &nbsp;<a href="https://github.com/OpenHelix-Team/RoboMemArena">Code →</a></p>
+        </div>
+      </article>
+
+      <article class="pcard" style="--c:var(--yellow)">
+        <a class="pfig" href="figs/gtr.png"><img src="figs/gtr.png" alt="GTR-Mamba architecture: rotation, geo and time encoders feeding GTR SSM layers with manifold-tangent recurrence on the Lorentz model"></a>
+        <div class="pbody">
+          <div class="tags"><span class="tag">arXiv:2510.22942</span><span class="tag tag--wip">Under review</span></div>
+          <p class="pt"><a href="https://arxiv.org/abs/2510.22942">GTR-Mamba: Geometry-to-Tangent Routing Mamba for Hyperbolic POI Recommendation</a></p>
+          <p class="pa">Zhuoxuan Li<sup>*</sup>, <u>Jieyuan Pei</u><sup>*</sup>, Tangwei Ye, Zhongyuan Lai, Zihan Liu, Fengyuan Xu, Qi Zhang, Liang Hu</p>
+          <p class="plink"><a href="https://arxiv.org/abs/2510.22942">arXiv →</a></p>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="wip">
+      <div class="wipc">
+        <div class="tags"><span class="tag tag--wip">In preparation</span></div>
+        <p class="pt">Test-time training for autonomous-driving VLA</p>
+        <p class="pa">AIR, Tsinghua University</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= AWARDS ================= -->
+  <section class="panel tiltR" style="--c:var(--yellow)">
+    <div class="chap" style="--c:var(--red)"><b>Awards</b><i></i><em>national level</em></div>
+    <div class="agrid">
+      <div class="acard" style="--c:var(--teal)">
+        <div class="alogo"><img src="logos/smartcar.png" alt="National Undergraduate Intelligent Car Race logo"></div>
+        <p class="aprize">National First Prize</p>
+        <p class="aname">National Undergraduate Intelligent Car Race</p>
+        <p class="ayear">2025</p>
+      </div>
+      <div class="acard" style="--c:var(--red)">
+        <div class="alogo"><img src="logos/nuedc.png" alt="National Undergraduate Electronic Design Contest logo"></div>
+        <p class="aprize">National Second Prize</p>
+        <p class="aname">National Undergraduate Electronic Design Contest</p>
+        <p class="ayear">2025</p>
+      </div>
+      <div class="acard" style="--c:var(--blue)">
+        <div class="alogo"><img src="logos/robocup.png" alt="RoboCup China logo"></div>
+        <p class="aprize">National First Prize</p>
+        <p class="aname">China Robot Competition &amp; RoboCup China</p>
+        <p class="ayear">2024</p>
+      </div>
+    </div>
+    <p class="note">Python / PyTorch · C/C++ · ROS · embedded systems · PCB design · mechanical CAD</p>
+  </section>
+
+  <footer>
+    <p class="toon">Thanks for reading!</p>
+    <p>peijieyuan@zjut.edu.cn · Hangzhou, China</p>
+  </footer>
+
+</div>
+</body>
+</html>
