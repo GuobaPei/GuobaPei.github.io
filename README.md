@@ -36,7 +36,10 @@ image that does not exist, and waits until the live page matches local:
 ./publish.sh "add NeurIPS paper"
 ```
 
-Useful extras: `--status "Under review"` for an unpublished entry (do not name
-the venue you submitted to), `--project URL`, `--fig-index 2` for the second
-figure on a page, `--fig some.png` to supply an image instead of a PDF, and no
-`--pdf` at all for a card with no figure.
+Useful extras: `--project URL`, `--fig-index 2` for the second figure on a page,
+`--fig some.png` to supply an image instead of a PDF, and no `--pdf` at all for
+a card with no figure.
+
+For a paper that is not published yet, put the arXiv id in `--venue`
+(`--venue "arXiv:2606.01234"`) and stop there. Submission status is never shown:
+an arXiv id is a fact, "under review at X" announces where you submitted.

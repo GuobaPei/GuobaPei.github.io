@@ -139,10 +139,9 @@ def build_card(a, colour, fig, dims):
                  f'<img loading="lazy" decoding="async" src="figs/{fig}" '
                  f'alt="{esc(a.alt or a.title)}"></a>')
     L.append('        <div class="pbody">')
-    tags = [f'<span class="tag">{esc(a.venue)}</span>']
-    if a.status:
-        tags.append(f'<span class="tag tag--wip">{esc(a.status)}</span>')
-    L.append(f'          <div class="tags">{"".join(tags)}</div>')
+    # Venue only. Submission status is deliberately not shown anywhere: an
+    # arXiv id states a fact, "under review at X" announces where you submitted.
+    L.append(f'          <div class="tags"><span class="tag">{esc(a.venue)}</span></div>')
     L.append(f'          <p class="pt">{head}</p>')
     if a.authors:
         L.append(f'          <p class="pa">{bold_me(esc(a.authors))}</p>')
@@ -163,7 +162,6 @@ def main():
     p.add_argument('--title', required=True)
     p.add_argument('--venue', required=True, help='e.g. "NeurIPS 2026" or "arXiv:2606.01234"')
     p.add_argument('--authors', default='', help='full list in printed order')
-    p.add_argument('--status', default='', help='e.g. "Under review" — leave empty if published')
     p.add_argument('--note', default='', help='one-line headline result')
     p.add_argument('--paper', default='')
     p.add_argument('--code', default='')
@@ -218,11 +216,17 @@ def main():
     colour = next_colour(html)
     card = build_card(a, colour, fig_name, dims)
 
-    # splice in as the last card of the papers grid
-    anchor = '\n    </div>\n\n    <div class="wip">'
-    if anchor not in html:
-        die('could not find the end of the papers grid in index.html')
-    html = html.replace(anchor, '\n' + card + anchor.lstrip('\n'), 1)
+    # Splice in after the last existing card. Anchoring on whatever markup
+    # follows the grid is brittle -- that is exactly how this broke once, when
+    # the block after the grid was deleted from the page.
+    try:
+        grid = html.index('<div class="pgrid">')
+        end = html.index('</section>', grid)
+        after_last = grid + html[grid:end].rindex('</article>') + len('</article>')
+    except ValueError:
+        die('could not locate the papers grid (<div class="pgrid"> ... </section>) '
+            'in index.html')
+    html = html[:after_last] + '\n\n' + card.rstrip('\n') + html[after_last:]
 
     # keep the footer date honest
     from datetime import date
@@ -232,7 +236,7 @@ def main():
     open(HTML, 'w', encoding='utf-8').write(html)
 
     print(f'added: {a.title}')
-    print(f'  venue  {a.venue}{"  [" + a.status + "]" if a.status else ""}')
+    print(f'  venue  {a.venue}')
     print(f'  colour {colour}')
     if fig_name:
         kb = os.path.getsize(os.path.join(FIGS, fig_name)) / 1024
