@@ -5,6 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Jieyuan Pei — 裴杰远</title>
 <meta name="description" content="Jieyuan Pei (裴杰远) — undergraduate researcher at Zhejiang University of Technology. Neural operators, spatial–spectral fusion, embodied VLA.">
+<link rel="canonical" href="https://guobapei.github.io/">
+<!-- comic-style favicon, inlined so there is no extra request -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23ffd23f' stroke='%2316161a' stroke-width='3'/%3E%3Ctext x='16' y='23' font-family='Impact,Haettenschweiler,sans-serif' font-size='18' text-anchor='middle' fill='%2316161a'%3EJP%3C/text%3E%3C/svg%3E">
+<!-- link previews when the page is shared -->
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Jieyuan Pei — 裴杰远">
+<meta property="og:description" content="Physical intelligence you can trust outside the lab. Neural operators for physics, spatial–spectral operators for imaging, world models for embodied agents.">
+<meta property="og:url" content="https://guobapei.github.io/">
+<meta property="og:image" content="https://guobapei.github.io/me.jpg">
+<meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -63,7 +73,7 @@ h1{
 }
 .cn{font-size:clamp(19px,3.4vw,24px);font-weight:700;letter-spacing:.3em;color:var(--mute);margin-top:12px}
 
-.chap{display:flex;align-items:center;gap:12px;margin:0 0 20px}
+.chap{display:flex;align-items:center;gap:12px;margin:0 0 20px;font-size:17px;font-weight:400}
 .chap b{
   font-family:"Bangers","Chalkboard SE",cursive;font-weight:400;
   background:var(--c);color:#fff;font-size:23px;letter-spacing:.1em;
@@ -97,7 +107,7 @@ h1{
 .links{display:flex;flex-wrap:wrap;gap:9px;margin:28px 0 0}
 .links a{
   font-family:"Bangers","Chalkboard SE",cursive;font-size:19px;letter-spacing:.07em;
-  display:inline-block;border:3px solid var(--ink);padding:2px 14px 0;
+  display:inline-block;border:3px solid var(--ink);padding:7px 16px 4px;
   text-decoration:none;color:var(--ink);background:var(--panel);box-shadow:4px 4px 0 var(--ink);
 }
 .links a:nth-child(1){background:var(--red);color:#fff}
@@ -105,6 +115,10 @@ h1{
 .links a:nth-child(3){background:var(--green);color:#fff}
 .links a:nth-child(4){background:var(--yellow);color:var(--ink)}
 .links a:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+.links a.copied{background:var(--green)!important;color:#fff!important}
+/* shown only if both copy paths fail: the address itself, selectable */
+.links a.reveal{background:var(--panel)!important;color:var(--ink)!important;
+  font-family:inherit;font-size:15px;font-weight:700;letter-spacing:0;user-select:all}
 
 /* ---------- research cards ---------- */
 .grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
@@ -117,8 +131,11 @@ h1{
 .pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
 .pcard{display:flex;flex-direction:column;border:3px solid var(--ink);background:var(--panel);
   box-shadow:5px 5px 0 var(--c)}
-.pfig{display:block;background:#fff;border-bottom:3px solid var(--ink);padding:6px}
-.pfig img{display:block;width:100%;height:auto;max-height:230px;object-fit:contain}
+/* fixed-height figure plate: reserves space so nothing jumps while the PNGs
+   load, and it lines the card text up across the grid */
+.pfig{display:flex;align-items:center;justify-content:center;height:200px;
+  background:#fff;border-bottom:3px solid var(--ink);padding:6px}
+.pfig img{display:block;max-width:100%;max-height:100%;width:auto;height:auto}
 .pbody{padding:13px 15px 15px}
 .pt{margin:0;font-size:17px;font-weight:700;line-height:1.3}
 .pt a{text-decoration:none;border-bottom:3px solid var(--c)}
@@ -130,8 +147,11 @@ h1{
   border:2.5px solid var(--ink);padding:1px 9px 0;background:var(--c);color:#fff;line-height:1.3}
 .tag--role{background:var(--panel);color:var(--ink)}
 .tag--wip{background:var(--panel);color:var(--mute);border-style:dashed}
-.plink{margin:9px 0 0;font-size:13.5px}
-.plink a{color:var(--c);font-weight:700}
+.plink{margin:4px 0 0;font-size:13.5px;display:flex;flex-wrap:wrap;gap:0 4px}
+/* padded so the hit area clears 36px on a phone — these were 16px tall */
+.plink a{color:var(--c);font-weight:700;text-decoration:none;
+  display:inline-block;padding:9px 8px;margin-left:-8px;border-bottom:2px solid transparent}
+.plink a:hover{border-bottom-color:var(--c)}
 
 /* in-progress row, no figure */
 .wip{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-top:20px}
@@ -154,6 +174,29 @@ h1{
 footer{text-align:center;font-size:15px;color:var(--mute)}
 footer .toon{font-size:24px;color:var(--ink)}
 
+/* keyboard focus was invisible before this */
+a:focus-visible,button:focus-visible{
+  outline:3px solid var(--blue);outline-offset:3px;border-radius:2px;
+}
+.pfig:focus-visible{outline-offset:-3px}
+
+/* the tilts and hover nudges are decorative */
+@media (prefers-reduced-motion:reduce){
+  .tiltL,.tiltR{transform:none}
+  .links a:hover,.copied{transform:none!important}
+  *{transition:none!important}
+}
+
+@media print{
+  body{background:#fff;background-image:none;color:#000;font-size:11pt}
+  .panel{box-shadow:none;border-width:1.5px;break-inside:avoid;page-break-inside:avoid}
+  .tiltL,.tiltR{transform:none}
+  .panel::before{display:none}
+  .pcard,.acard,.card{box-shadow:none}
+  .plink,.links{display:none}          /* links are useless on paper */
+  h1{color:#000;text-shadow:none}
+}
+
 @media(max-width:560px){
   .panel{padding:18px 16px;box-shadow:5px 5px 0 var(--ink)}
   .tiltL,.tiltR{transform:none}
@@ -167,10 +210,10 @@ footer .toon{font-size:24px;color:var(--ink)}
 
   <!-- ================= HERO ================= -->
   <section class="panel tiltL hero" style="--c:var(--blue)">
-    <img class="shot" src="me.jpg" alt="Photo of Jieyuan Pei">
+    <img class="shot" src="me.jpg" fetchpriority="high" decoding="async" width="300" height="225" alt="Photo of Jieyuan Pei">
     <div class="hero-txt">
       <h1>Jieyuan&nbsp;Pei</h1>
-      <div class="cn">裴 杰 远</div>
+      <div class="cn" lang="zh-CN">裴 杰 远</div>
       <p class="affil">
         <b>B.Eng. Intelligent Science &amp; Technology</b><br>
         <span>Zhejiang University of Technology · expected June 2027</span><br>
@@ -185,7 +228,9 @@ footer .toon{font-size:24px;color:var(--ink)}
         <br><br>Applying for <b>2027 Fall MPhil / PhD</b>.
       </div>
       <div class="links">
-        <a href="mailto:peijieyuan@zjut.edu.cn">Email</a>
+        <a class="js-mail" href="mailto:peijieyuan@zjut.edu.cn"
+           data-mail="peijieyuan@zjut.edu.cn"
+           title="peijieyuan@zjut.edu.cn — click to copy">Email</a>
         <a href="https://scholar.google.com/citations?user=xAAOO_0AAAAJ&amp;hl=en">Scholar</a>
         <a href="https://github.com/GuobaPei">GitHub</a>
       </div>
@@ -194,7 +239,7 @@ footer .toon{font-size:24px;color:var(--ink)}
 
   <!-- ================= RESEARCH ================= -->
   <section class="panel tiltR" style="--c:var(--green)">
-    <div class="chap" style="--c:var(--green)"><b>Research</b><i></i><em>three threads, one method</em></div>
+    <h2 class="chap" style="--c:var(--green)"><b>Research</b><i></i><em>three threads, one method</em></h2>
     <div class="grid3">
       <div class="card" style="--c:var(--red)">
         <h3>Embodied VLA</h3>
@@ -216,12 +261,12 @@ footer .toon{font-size:24px;color:var(--ink)}
 
   <!-- ================= PAPERS ================= -->
   <section class="panel" style="--c:var(--purple)">
-    <div class="chap" style="--c:var(--purple)"><b>Papers</b><i></i><em>bold = me · * equal contribution · click a panel for the full figure</em></div>
+    <h2 class="chap" style="--c:var(--purple)"><b>Papers</b><i></i><em>bold = me · * equal contribution · click a panel for the full figure</em></h2>
 
     <div class="pgrid">
 
       <article class="pcard" style="--c:var(--purple)">
-        <a class="pfig" href="figs/hno.png"><img src="figs/hno.png" alt="HNO teaser: near/far-field decomposition, hierarchical tree, and its embedding on a Lorentz hyperboloid"></a>
+        <a class="pfig" href="figs/hno.png"><img loading="lazy" decoding="async" src="figs/hno.png" alt="HNO teaser: near/far-field decomposition, hierarchical tree, and its embedding on a Lorentz hyperboloid"></a>
         <div class="pbody">
           <div class="tags"><span class="tag">ICML 2026</span></div>
           <p class="pt"><a href="https://openreview.net/forum?id=CUQwYTTNu8">Hyperbolic Neural Operator</a></p>
@@ -235,7 +280,7 @@ footer .toon{font-size:24px;color:var(--ink)}
       </article>
 
       <article class="pcard" style="--c:var(--red)">
-        <a class="pfig" href="figs/s3o.png"><img src="figs/s3o.png" alt="S3O architecture: multi-scale embedding, S3O backbone, and the hard location selection block"></a>
+        <a class="pfig" href="figs/s3o.png"><img loading="lazy" decoding="async" src="figs/s3o.png" alt="S3O architecture: multi-scale embedding, S3O backbone, and the hard location selection block"></a>
         <div class="pbody">
           <div class="tags"><span class="tag">CVPR 2026</span></div>
           <p class="pt"><a href="https://openaccess.thecvf.com/content/CVPR2026F/html/Pei_S3O_Selective_Spatial-Spectral_Operator_for_Cross-Scale_Fusion_CVPRF_2026_paper.html">S<sup>3</sup>O: Selective Spatial–Spectral Operator for Cross-Scale Fusion</a></p>
@@ -249,7 +294,7 @@ footer .toon{font-size:24px;color:var(--ink)}
       </article>
 
       <article class="pcard" style="--c:var(--blue)">
-        <a class="pfig" href="figs/lso.png"><img src="figs/lso.png" alt="Latent spectral operator pipeline: patchify, coordinate-to-latent projection, solve on a trigonometric basis, project back"></a>
+        <a class="pfig" href="figs/lso.png"><img loading="lazy" decoding="async" src="figs/lso.png" alt="Latent spectral operator pipeline: patchify, coordinate-to-latent projection, solve on a trigonometric basis, project back"></a>
         <div class="pbody">
           <div class="tags"><span class="tag">ICML 2026</span></div>
           <p class="pt"><a href="https://openreview.net/forum?id=i6Bxd3WpbD">Solving Spatial–Spectral Fusion with Latent Spectral Operators</a></p>
@@ -262,7 +307,7 @@ footer .toon{font-size:24px;color:var(--ink)}
       </article>
 
       <article class="pcard" style="--c:var(--orange)">
-        <a class="pfig" href="figs/starfus.png"><img src="figs/starfus.png" alt="StarFus-Net U-Net with asymmetric spatial measurement and spectral prior paths"></a>
+        <a class="pfig" href="figs/starfus.png"><img loading="lazy" decoding="async" src="figs/starfus.png" alt="StarFus-Net U-Net with asymmetric spatial measurement and spectral prior paths"></a>
         <div class="pbody">
           <div class="tags"><span class="tag">ICASSP 2026</span></div>
           <p class="pt"><a href="https://doi.org/10.1109/ICASSP55912.2026.11461717">Asymmetric StarFus: Learning Incoherent Measurements for Semantics-Aware Spatial–Spectral Fusion</a></p>
@@ -273,7 +318,7 @@ footer .toon{font-size:24px;color:var(--ink)}
       </article>
 
       <article class="pcard" style="--c:var(--green)">
-        <a class="pfig" href="figs/tgrs.png"><img src="figs/tgrs.png" alt="Five-stage fusion pipeline with parallel spatial and frequency branches and a semantic transformer"></a>
+        <a class="pfig" href="figs/tgrs.png"><img loading="lazy" decoding="async" src="figs/tgrs.png" alt="Five-stage fusion pipeline with parallel spatial and frequency branches and a semantic transformer"></a>
         <div class="pbody">
           <div class="tags"><span class="tag">IEEE TGRS</span></div>
           <p class="pt"><a href="https://doi.org/10.1109/TGRS.2026.3657766">S<sup>2</sup>TA-Fuse: Semantic-Superpixel Tokenized Attention for Spatial–Spectral Fusion</a></p>
@@ -283,7 +328,7 @@ footer .toon{font-size:24px;color:var(--ink)}
       </article>
 
       <article class="pcard" style="--c:var(--teal)">
-        <a class="pfig" href="figs/kdd.png"><img src="figs/kdd.png" alt="Mag-Mamba framework: magnetic phase encoder feeding a Mamba layer with rotation control"></a>
+        <a class="pfig" href="figs/kdd.png"><img loading="lazy" decoding="async" src="figs/kdd.png" alt="Mag-Mamba framework: magnetic phase encoder feeding a Mamba layer with rotation control"></a>
         <div class="pbody">
           <div class="tags"><span class="tag">KDD 2026 · Oral</span></div>
           <p class="pt"><a href="https://arxiv.org/abs/2603.00053">Mag-Mamba: Modeling Coupled Spatiotemporal Asymmetry for POI Recommendation</a></p>
@@ -293,7 +338,7 @@ footer .toon{font-size:24px;color:var(--ink)}
       </article>
 
       <article class="pcard" style="--c:var(--pink)">
-        <a class="pfig" href="figs/robomem.png"><img src="figs/robomem.png" alt="RoboMemArena overview: annotation pipeline, dataset statistics, baseline comparison, and real-world evaluation"></a>
+        <a class="pfig" href="figs/robomem.png"><img loading="lazy" decoding="async" src="figs/robomem.png" alt="RoboMemArena overview: annotation pipeline, dataset statistics, baseline comparison, and real-world evaluation"></a>
         <div class="pbody">
           <div class="tags"><span class="tag">arXiv:2605.10921</span></div>
           <p class="pt"><a href="https://arxiv.org/abs/2605.10921">RoboMemArena: A Comprehensive and Challenging Robotic Memory Benchmark</a></p>
@@ -306,7 +351,7 @@ footer .toon{font-size:24px;color:var(--ink)}
       </article>
 
       <article class="pcard" style="--c:var(--yellow)">
-        <a class="pfig" href="figs/gtr.png"><img src="figs/gtr.png" alt="GTR-Mamba architecture: rotation, geo and time encoders feeding GTR SSM layers with manifold-tangent recurrence on the Lorentz model"></a>
+        <a class="pfig" href="figs/gtr.png"><img loading="lazy" decoding="async" src="figs/gtr.png" alt="GTR-Mamba architecture: rotation, geo and time encoders feeding GTR SSM layers with manifold-tangent recurrence on the Lorentz model"></a>
         <div class="pbody">
           <div class="tags"><span class="tag">arXiv:2510.22942</span><span class="tag tag--wip">Under review</span></div>
           <p class="pt"><a href="https://arxiv.org/abs/2510.22942">GTR-Mamba: Geometry-to-Tangent Routing Mamba for Hyperbolic POI Recommendation</a></p>
@@ -328,22 +373,22 @@ footer .toon{font-size:24px;color:var(--ink)}
 
   <!-- ================= AWARDS ================= -->
   <section class="panel tiltR" style="--c:var(--yellow)">
-    <div class="chap" style="--c:var(--red)"><b>Awards</b><i></i><em>national level</em></div>
+    <h2 class="chap" style="--c:var(--red)"><b>Awards</b><i></i><em>national level</em></h2>
     <div class="agrid">
       <div class="acard" style="--c:var(--teal)">
-        <div class="alogo"><img src="logos/smartcar.png" alt="National Undergraduate Intelligent Car Race logo"></div>
+        <div class="alogo"><img loading="lazy" decoding="async" src="logos/smartcar.png" alt="National Undergraduate Intelligent Car Race logo"></div>
         <p class="aprize">National First Prize</p>
         <p class="aname">National Undergraduate Intelligent Car Race</p>
         <p class="ayear">2025</p>
       </div>
       <div class="acard" style="--c:var(--red)">
-        <div class="alogo"><img src="logos/nuedc.png" alt="National Undergraduate Electronic Design Contest logo"></div>
+        <div class="alogo"><img loading="lazy" decoding="async" src="logos/nuedc.png" alt="National Undergraduate Electronic Design Contest logo"></div>
         <p class="aprize">National Second Prize</p>
         <p class="aname">National Undergraduate Electronic Design Contest</p>
         <p class="ayear">2025</p>
       </div>
       <div class="acard" style="--c:var(--blue)">
-        <div class="alogo"><img src="logos/robocup.png" alt="RoboCup China logo"></div>
+        <div class="alogo"><img loading="lazy" decoding="async" src="logos/robocup.png" alt="RoboCup China logo"></div>
         <p class="aprize">National First Prize</p>
         <p class="aname">China Robot Competition &amp; RoboCup China</p>
         <p class="ayear">2024</p>
@@ -358,5 +403,63 @@ footer .toon{font-size:24px;color:var(--ink)}
   </footer>
 
 </div>
+
+<script>
+// Open anything off-site in a new tab, including the full-size figures, so the
+// page never gets navigated away from.
+for (const a of document.querySelectorAll('a[href^="http"], a.pfig')) {
+  a.target = '_blank';
+  a.rel = 'noopener';
+}
+for (const a of document.querySelectorAll('a.pfig')) {
+  a.setAttribute('aria-label', 'Open the full-size figure');
+}
+
+// "Email" used to be a bare mailto:, which does nothing at all on a machine
+// with no mail client configured. Copy the address instead and say so. The
+// mailto: stays in href so cmd-click, right-click and the no-JS case still work.
+const mail = document.querySelector('.js-mail');
+if (mail) {
+  // execCommand is deprecated but it is the only copy path that works when
+  // navigator.clipboard is missing or blocked (non-secure context, permissions).
+  const legacyCopy = (text) => {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.cssText = 'position:fixed;top:-1000px;opacity:0';
+    document.body.appendChild(ta);
+    ta.select();
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    ta.remove();
+    return ok;
+  };
+
+  const flash = (text, cls, ms) => {
+    mail.textContent = text;
+    mail.classList.toggle('copied', cls === 'copied');
+    mail.classList.toggle('reveal', cls === 'reveal');
+    clearTimeout(mail._t);
+    mail._t = setTimeout(() => {
+      mail.textContent = 'Email';
+      mail.classList.remove('copied', 'reveal');
+    }, ms);
+  };
+
+  mail.addEventListener('click', async (e) => {
+    e.preventDefault();
+    const addr = mail.dataset.mail;
+    let ok = false;
+    if (navigator.clipboard) {
+      try { await navigator.clipboard.writeText(addr); ok = true; } catch (err) { ok = false; }
+    }
+    if (!ok) ok = legacyCopy(addr);
+    // If both copy paths fail, show the address so it can be read and selected.
+    // Never leave the click doing nothing, which is the whole point of this.
+    if (ok) flash('Copied ✓', 'copied', 1600);
+    else flash(addr, 'reveal', 6000);
+  });
+}
+</script>
 </body>
 </html>
