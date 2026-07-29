@@ -165,8 +165,17 @@ h1{
 /* in-progress row, no figure */
 /* auto-fill, not auto-fit: with a single entry auto-fit collapses the empty
    tracks and the card stretches the full width, out of step with the grid above */
-.wip{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;margin-top:20px}
-.wipc{border:3px dashed var(--ink);padding:14px 16px;background:transparent}
+
+/* ---------- experience ---------- */
+.xp{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.xpitem{border:3px solid var(--ink);padding:15px 17px;background:var(--panel);
+  box-shadow:5px 5px 0 var(--c);transition:transform .22s ease,box-shadow .22s ease}
+.xpitem:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--c)}
+.xprole{margin:0;font-family:"Bangers","Chalkboard SE",cursive;font-weight:400;
+  font-size:23px;letter-spacing:.03em;color:var(--c);-webkit-text-stroke:.5px var(--ink)}
+.xpwhere{margin:3px 0 0;font-size:15.5px;font-weight:700;line-height:1.3}
+.xpmeta{margin:4px 0 0;font-size:13px;color:var(--mute)}
+.xpwhat{margin:9px 0 0;font-size:14.5px;color:var(--mute)}
 
 /* ---------- awards ---------- */
 .agrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
@@ -453,11 +462,25 @@ a:focus-visible,button:focus-visible{
 
     </div>
 
-    <div class="wip">
-      <div class="wipc">
-        <div class="tags"><span class="tag tag--wip">In preparation</span></div>
-        <p class="pt">World models for autonomous driving</p>
-        <p class="pa">AIR, Tsinghua University</p>
+  </section>
+
+  <!-- ================= EXPERIENCE ================= -->
+  <section class="panel tiltL" style="--c:var(--teal)">
+    <h2 class="chap" style="--c:var(--teal)"><b>Experience</b><i></i><em>where the work happens</em></h2>
+    <div class="xp">
+      <div class="xpitem" style="--c:var(--teal)">
+        <p class="xprole">Research Intern</p>
+        <p class="xpwhere">Institute for AI Industry Research (AIR), Tsinghua University</p>
+        <p class="xpmeta">Advisor: Yan Wang · Jan 2026 – present</p>
+        <p class="xpwhat">World models for autonomous driving, and an embodied-AI memory
+        benchmark for long-horizon robot tasks.</p>
+      </div>
+      <div class="xpitem" style="--c:var(--purple)">
+        <p class="xprole">Undergraduate Researcher</p>
+        <p class="xpwhere">Zhejiang University of Technology</p>
+        <p class="xpmeta">Advisor: Jianwei Zheng · 2025 – present</p>
+        <p class="xpwhat">Neural operators for PDEs, and spatial–spectral fusion for
+        hyperspectral and remote-sensing imaging.</p>
       </div>
     </div>
   </section>
@@ -515,7 +538,7 @@ document.documentElement.classList.add('js');
   panels.forEach(p => p.classList.add('rv'));
 
   // stagger the cards inside each grid so a row cascades instead of popping
-  document.querySelectorAll('.pgrid, .grid3, .agrid, .wip').forEach(grid => {
+  document.querySelectorAll('.pgrid, .grid3, .agrid, .xp').forEach(grid => {
     [...grid.children].forEach((c, i) => {
       c.classList.add('rv-card');
       c.style.setProperty('--d', (i % 3) * 70 + 'ms');
