@@ -131,11 +131,13 @@ h1{
 .pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
 .pcard{display:flex;flex-direction:column;border:3px solid var(--ink);background:var(--panel);
   box-shadow:5px 5px 0 var(--c)}
-/* fixed-height figure plate: reserves space so nothing jumps while the PNGs
-   load, and it lines the card text up across the grid */
-.pfig{display:flex;align-items:center;justify-content:center;height:200px;
-  background:#fff;border-bottom:3px solid var(--ink);padding:6px}
-.pfig img{display:block;max-width:100%;max-height:100%;width:auto;height:auto}
+/* Each plate carries its own figure's aspect-ratio (set inline per card), so the
+   figure fills the full card width with no white bars, and the ratio still
+   reserves the space up front so nothing jumps while the PNGs load. */
+.pfig{display:block;overflow:hidden;background:#fff;border-bottom:3px solid var(--ink)}
+.pfig img{display:block;width:100%;height:100%;object-fit:cover;
+  transition:transform .45s cubic-bezier(.2,.7,.3,1)}
+.pcard:hover .pfig img{transform:scale(1.045)}
 .pbody{padding:13px 15px 15px}
 .pt{margin:0;font-size:17px;font-weight:700;line-height:1.3}
 .pt a{text-decoration:none;border-bottom:3px solid var(--c)}
@@ -174,17 +176,55 @@ h1{
 footer{text-align:center;font-size:15px;color:var(--mute)}
 footer .toon{font-size:24px;color:var(--ink)}
 
+/* ---------- motion ----------
+   Everything here is gated on html.js so the page is fully visible when
+   JavaScript does not run. */
+/* Deliberately transform-only, never opacity. A CSS transition can freeze
+   part-way in odd renderers, and a frozen opacity fade would leave the page
+   permanently blank; a frozen slide just leaves things a few px low, which
+   nobody will ever notice. Motion must not be able to hide content. */
+.js .rv{transform:translateY(14px)}
+.js .rv-card{transform:translateY(22px)}
+.js .rv.in{transform:none;transition:transform .5s cubic-bezier(.2,.85,.25,1)}
+.js .rv-card.in{transform:none;
+  transition:transform .55s cubic-bezier(.2,.85,.25,1) var(--d,0ms)}
+
+/* the name stamps down like a cover title — again, no opacity involved */
+@keyframes stamp{
+  0%{transform:scale(1.35) rotate(-4deg)}
+  55%{transform:scale(.97) rotate(1.2deg)}
+  100%{transform:none}
+}
+.js h1{animation:stamp .62s cubic-bezier(.2,.9,.3,1.15) both}
+
+/* panels lift off the page on hover */
+.pcard,.card,.acard{transition:transform .22s ease,box-shadow .22s ease}
+.pcard:hover,.card:hover,.acard:hover{
+  transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--c);
+}
+.chap b{transition:transform .2s ease}
+.chap:hover b{transform:rotate(0deg) scale(1.04)}
+.tag{transition:transform .18s ease}
+.tag:hover{transform:translateY(-2px) rotate(-1.5deg)}
+.alogo img{transition:transform .25s cubic-bezier(.2,.8,.3,1.1)}
+.acard:hover .alogo img{transform:scale(1.1) rotate(-3deg)}
+.shot{transition:transform .3s ease,box-shadow .3s ease}
+.shot:hover{transform:translate(-2px,-2px);box-shadow:10px 10px 0 var(--blue)}
+
 /* keyboard focus was invisible before this */
 a:focus-visible,button:focus-visible{
   outline:3px solid var(--blue);outline-offset:3px;border-radius:2px;
 }
 .pfig:focus-visible{outline-offset:-3px}
 
-/* the tilts and hover nudges are decorative */
+/* all of the above is decoration; honour the OS setting */
 @media (prefers-reduced-motion:reduce){
   .tiltL,.tiltR{transform:none}
-  .links a:hover,.copied{transform:none!important}
-  *{transition:none!important}
+  .js .rv,.js .rv-card{opacity:1!important;transform:none!important}
+  .js h1{animation:none}
+  *{transition:none!important;animation:none!important}
+  .pcard:hover,.card:hover,.acard:hover,.links a:hover,.shot:hover,
+  .chap:hover b,.tag:hover,.pcard:hover .pfig img{transform:none!important}
 }
 
 @media print{
@@ -266,7 +306,7 @@ a:focus-visible,button:focus-visible{
     <div class="pgrid">
 
       <article class="pcard" style="--c:var(--purple)">
-        <a class="pfig" href="figs/hno.png"><img loading="lazy" decoding="async" src="figs/hno.png" alt="HNO teaser: near/far-field decomposition, hierarchical tree, and its embedding on a Lorentz hyperboloid"></a>
+        <a class="pfig" href="figs/hno.png" style="aspect-ratio:1200/384"><img loading="lazy" decoding="async" src="figs/hno.png" alt="HNO teaser: near/far-field decomposition, hierarchical tree, and its embedding on a Lorentz hyperboloid"></a>
         <div class="pbody">
           <div class="tags"><span class="tag">ICML 2026</span></div>
           <p class="pt"><a href="https://openreview.net/forum?id=CUQwYTTNu8">Hyperbolic Neural Operator</a></p>
@@ -280,7 +320,7 @@ a:focus-visible,button:focus-visible{
       </article>
 
       <article class="pcard" style="--c:var(--red)">
-        <a class="pfig" href="figs/s3o.png"><img loading="lazy" decoding="async" src="figs/s3o.png" alt="S3O architecture: multi-scale embedding, S3O backbone, and the hard location selection block"></a>
+        <a class="pfig" href="figs/s3o.png" style="aspect-ratio:1200/576"><img loading="lazy" decoding="async" src="figs/s3o.png" alt="S3O architecture: multi-scale embedding, S3O backbone, and the hard location selection block"></a>
         <div class="pbody">
           <div class="tags"><span class="tag">CVPR 2026</span></div>
           <p class="pt"><a href="https://openaccess.thecvf.com/content/CVPR2026F/html/Pei_S3O_Selective_Spatial-Spectral_Operator_for_Cross-Scale_Fusion_CVPRF_2026_paper.html">S<sup>3</sup>O: Selective Spatial–Spectral Operator for Cross-Scale Fusion</a></p>
@@ -294,7 +334,7 @@ a:focus-visible,button:focus-visible{
       </article>
 
       <article class="pcard" style="--c:var(--blue)">
-        <a class="pfig" href="figs/lso.png"><img loading="lazy" decoding="async" src="figs/lso.png" alt="Latent spectral operator pipeline: patchify, coordinate-to-latent projection, solve on a trigonometric basis, project back"></a>
+        <a class="pfig" href="figs/lso.png" style="aspect-ratio:1200/334"><img loading="lazy" decoding="async" src="figs/lso.png" alt="Latent spectral operator pipeline: patchify, coordinate-to-latent projection, solve on a trigonometric basis, project back"></a>
         <div class="pbody">
           <div class="tags"><span class="tag">ICML 2026</span></div>
           <p class="pt"><a href="https://openreview.net/forum?id=i6Bxd3WpbD">Solving Spatial–Spectral Fusion with Latent Spectral Operators</a></p>
@@ -307,7 +347,7 @@ a:focus-visible,button:focus-visible{
       </article>
 
       <article class="pcard" style="--c:var(--orange)">
-        <a class="pfig" href="figs/starfus.png"><img loading="lazy" decoding="async" src="figs/starfus.png" alt="StarFus-Net U-Net with asymmetric spatial measurement and spectral prior paths"></a>
+        <a class="pfig" href="figs/starfus.png" style="aspect-ratio:1200/369"><img loading="lazy" decoding="async" src="figs/starfus.png" alt="StarFus-Net U-Net with asymmetric spatial measurement and spectral prior paths"></a>
         <div class="pbody">
           <div class="tags"><span class="tag">ICASSP 2026</span></div>
           <p class="pt"><a href="https://doi.org/10.1109/ICASSP55912.2026.11461717">Asymmetric StarFus: Learning Incoherent Measurements for Semantics-Aware Spatial–Spectral Fusion</a></p>
@@ -318,7 +358,7 @@ a:focus-visible,button:focus-visible{
       </article>
 
       <article class="pcard" style="--c:var(--green)">
-        <a class="pfig" href="figs/tgrs.png"><img loading="lazy" decoding="async" src="figs/tgrs.png" alt="Five-stage fusion pipeline with parallel spatial and frequency branches and a semantic transformer"></a>
+        <a class="pfig" href="figs/tgrs.png" style="aspect-ratio:1200/376"><img loading="lazy" decoding="async" src="figs/tgrs.png" alt="Five-stage fusion pipeline with parallel spatial and frequency branches and a semantic transformer"></a>
         <div class="pbody">
           <div class="tags"><span class="tag">IEEE TGRS</span></div>
           <p class="pt"><a href="https://doi.org/10.1109/TGRS.2026.3657766">S<sup>2</sup>TA-Fuse: Semantic-Superpixel Tokenized Attention for Spatial–Spectral Fusion</a></p>
@@ -328,7 +368,7 @@ a:focus-visible,button:focus-visible{
       </article>
 
       <article class="pcard" style="--c:var(--teal)">
-        <a class="pfig" href="figs/kdd.png"><img loading="lazy" decoding="async" src="figs/kdd.png" alt="Mag-Mamba framework: magnetic phase encoder feeding a Mamba layer with rotation control"></a>
+        <a class="pfig" href="figs/kdd.png" style="aspect-ratio:1200/577"><img loading="lazy" decoding="async" src="figs/kdd.png" alt="Mag-Mamba framework: magnetic phase encoder feeding a Mamba layer with rotation control"></a>
         <div class="pbody">
           <div class="tags"><span class="tag">KDD 2026 · Oral</span></div>
           <p class="pt"><a href="https://arxiv.org/abs/2603.00053">Mag-Mamba: Modeling Coupled Spatiotemporal Asymmetry for POI Recommendation</a></p>
@@ -338,7 +378,7 @@ a:focus-visible,button:focus-visible{
       </article>
 
       <article class="pcard" style="--c:var(--pink)">
-        <a class="pfig" href="figs/robomem.png"><img loading="lazy" decoding="async" src="figs/robomem.png" alt="RoboMemArena overview: annotation pipeline, dataset statistics, baseline comparison, and real-world evaluation"></a>
+        <a class="pfig" href="figs/robomem.png" style="aspect-ratio:1200/584"><img loading="lazy" decoding="async" src="figs/robomem.png" alt="RoboMemArena overview: annotation pipeline, dataset statistics, baseline comparison, and real-world evaluation"></a>
         <div class="pbody">
           <div class="tags"><span class="tag">arXiv:2605.10921</span></div>
           <p class="pt"><a href="https://arxiv.org/abs/2605.10921">RoboMemArena: A Comprehensive and Challenging Robotic Memory Benchmark</a></p>
@@ -351,7 +391,7 @@ a:focus-visible,button:focus-visible{
       </article>
 
       <article class="pcard" style="--c:var(--yellow)">
-        <a class="pfig" href="figs/gtr.png"><img loading="lazy" decoding="async" src="figs/gtr.png" alt="GTR-Mamba architecture: rotation, geo and time encoders feeding GTR SSM layers with manifold-tangent recurrence on the Lorentz model"></a>
+        <a class="pfig" href="figs/gtr.png" style="aspect-ratio:1200/636"><img loading="lazy" decoding="async" src="figs/gtr.png" alt="GTR-Mamba architecture: rotation, geo and time encoders feeding GTR SSM layers with manifold-tangent recurrence on the Lorentz model"></a>
         <div class="pbody">
           <div class="tags"><span class="tag">arXiv:2510.22942</span><span class="tag tag--wip">Under review</span></div>
           <p class="pt"><a href="https://arxiv.org/abs/2510.22942">GTR-Mamba: Geometry-to-Tangent Routing Mamba for Hyperbolic POI Recommendation</a></p>
@@ -405,6 +445,48 @@ a:focus-visible,button:focus-visible{
 </div>
 
 <script>
+// Reveal panels and cards as they scroll into view. The .js class is what
+// switches the hidden start state on, so without JS nothing is ever hidden.
+document.documentElement.classList.add('js');
+{
+  const panels = document.querySelectorAll('.panel');
+  panels.forEach(p => p.classList.add('rv'));
+
+  // stagger the cards inside each grid so a row cascades instead of popping
+  document.querySelectorAll('.pgrid, .grid3, .agrid, .wip').forEach(grid => {
+    [...grid.children].forEach((c, i) => {
+      c.classList.add('rv-card');
+      c.style.setProperty('--d', (i % 3) * 70 + 'ms');
+    });
+  });
+
+  const targets = document.querySelectorAll('.rv, .rv-card');
+  if (!('IntersectionObserver' in window)) {
+    targets.forEach(t => t.classList.add('in'));   // old browser: just show it
+  } else {
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (!e.isIntersecting) continue;
+        e.target.classList.add('in');
+        io.unobserve(e.target);                     // reveal once, never re-hide
+      }
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.04 });
+    targets.forEach(t => io.observe(t));
+    // Anything already on screen at load should not wait for a scroll event.
+    // The `|| 1e5` matters: some webviews and snapshot renderers report a zero
+    // viewport, and `top < 0` would hide the whole page.
+    requestAnimationFrame(() => {
+      const h = innerHeight || 1e5;
+      targets.forEach(t => {
+        if (t.getBoundingClientRect().top < h) t.classList.add('in');
+      });
+    });
+  }
+  // Safety net: settle anything still offset a moment after load, so a missed
+  // observer callback cannot leave part of the page nudged out of place.
+  setTimeout(() => targets.forEach(t => t.classList.add('in')), 1600);
+}
+
 // Open anything off-site in a new tab, including the full-size figures, so the
 // page never gets navigated away from.
 for (const a of document.querySelectorAll('a[href^="http"], a.pfig')) {
