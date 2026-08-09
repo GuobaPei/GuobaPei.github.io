@@ -170,6 +170,14 @@ h1{
 .xpitem{border:3px solid var(--ink);padding:15px 17px;background:var(--panel);
   box-shadow:5px 5px 0 var(--c);transition:transform .22s ease,box-shadow .22s ease}
 .xpitem:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--c)}
+.xplogo{height:82px;display:flex;align-items:center;justify-content:center;
+  background:#fff;border:2.5px solid var(--ink);margin-bottom:13px;overflow:hidden}
+.xplogo img{max-width:88%;max-height:66px;object-fit:contain;
+  transition:transform .25s cubic-bezier(.2,.8,.3,1.1)}
+.xplogo img.wide{max-width:94%;max-height:70px}
+.xplogo img.mark{width:68px;height:68px;max-width:none;max-height:none}
+.xplogo img.hithink-mark{width:94px;height:94px}
+.xpitem:hover .xplogo img{transform:scale(1.08) rotate(-2deg)}
 .xprole{margin:0;font-family:"Bangers","Chalkboard SE",cursive;font-weight:400;
   font-size:23px;letter-spacing:.03em;color:var(--c);-webkit-text-stroke:.5px var(--ink)}
 .xpwhere{margin:3px 0 0;font-size:15.5px;font-weight:700;line-height:1.3}
@@ -469,12 +477,14 @@ a:focus-visible,button:focus-visible{
     <h2 class="chap" style="--c:var(--teal)"><b>Experience</b><i></i><em>where the work happens</em></h2>
     <div class="xp">
       <div class="xpitem" style="--c:var(--red)">
+        <div class="xplogo"><img class="mark hithink-mark" loading="lazy" decoding="async" src="logos/hithink.svg" alt="Hithink RoyalFlush logo"></div>
         <p class="xprole">AI Research Intern</p>
         <p class="xpwhere">Hithink RoyalFlush Information Network Co., Ltd.</p>
         <p class="xpmeta">NLP &amp; Robotics Department · Aug 2026 – present</p>
         <p class="xpwhat">NLP/LLM systems and robotics-related research and engineering.</p>
       </div>
       <div class="xpitem" style="--c:var(--teal)">
+        <div class="xplogo"><img class="wide" loading="lazy" decoding="async" src="logos/air.png" alt="Institute for AI Industry Research, Tsinghua University logo"></div>
         <p class="xprole">Research Intern</p>
         <p class="xpwhere">Institute for AI Industry Research (AIR), Tsinghua University</p>
         <p class="xpmeta">Advisor: Yan Wang · Jan 2026 – present</p>
@@ -482,6 +492,7 @@ a:focus-visible,button:focus-visible{
         benchmark for long-horizon robot tasks.</p>
       </div>
       <div class="xpitem" style="--c:var(--purple)">
+        <div class="xplogo"><img class="mark" loading="lazy" decoding="async" src="logos/zjut.png" alt="Zhejiang University of Technology logo"></div>
         <p class="xprole">Undergraduate Researcher</p>
         <p class="xpwhere">Zhejiang University of Technology</p>
         <p class="xpmeta">Advisor: Jianwei Zheng · 2025 – present</p>
