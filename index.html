@@ -94,6 +94,13 @@ h1{
 .affil{margin:16px 0 0;font-size:16px}
 .affil b{font-weight:700}
 .affil span{color:var(--mute)}
+.contact{display:inline-flex;align-items:center;gap:8px;margin:12px 0 0;
+  padding:5px 10px 4px;border:2.5px solid var(--ink);background:#fff;
+  box-shadow:3px 3px 0 var(--yellow);font-size:14.5px;transform:rotate(-.4deg)}
+.contact b{font-family:"Bangers","Chalkboard SE",cursive;font-size:17px;
+  letter-spacing:.06em;color:var(--red);font-weight:400}
+.contact a{color:var(--ink);font-weight:700;text-decoration:none;border-bottom:2px solid var(--blue)}
+.contact a:hover{color:var(--blue)}
 .hl{background:linear-gradient(transparent 58%,var(--yellow) 58%,var(--yellow) 94%,transparent 94%);font-weight:700}
 
 .bubble{
@@ -327,6 +334,7 @@ a:focus-visible,button:focus-visible{
         <span>Research intern · AIR, Tsinghua University</span><br>
         <span>AI research intern · Hithink RoyalFlush</span>
       </p>
+      <p class="contact"><b>Contact</b><a href="mailto:peijieyuan@zjut.edu.cn">peijieyuan@zjut.edu.cn</a></p>
       <div class="bubble">
         I want to build <span class="hl">physical intelligence you can trust outside the
         lab</span> — models that still hold up when the real world shifts scale, degrades, or
