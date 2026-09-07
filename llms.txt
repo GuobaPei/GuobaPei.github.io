@@ -1,0 +1,11 @@
+# Jieyuan Pei — research resources
+
+> Academic website and linked research artifacts.
+
+## Profile
+- [Academic homepage](https://guobapei.github.io/): Biography and publications.
+
+## Hyperbolic Neural Operator (ICML 2026)
+- [HNO research resources](https://guobapei.github.io/Hyperbolic-Neural-Operator/llms.txt): Paper, full text, code, benchmark summary and citation.
+- [HNO abstract and results](https://guobapei.github.io/Hyperbolic-Neural-Operator/paper.html): Lorentz-distance attention for multiscale PDE surrogate modeling.
+- [HNO paper PDF](https://guobapei.github.io/Hyperbolic-Neural-Operator/assets/paper.pdf): Complete author-provided manuscript.
