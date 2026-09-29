@@ -23,7 +23,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 HTML = os.path.join(HERE, 'index.html')
 FIGS = os.path.join(HERE, 'figs')
 # same order the existing cards use, so a new one keeps the rotation going
-COLOURS = ['purple', 'red', 'blue', 'orange', 'green', 'teal', 'pink', 'yellow']
+# no yellow: as link text on the cream panel it is 1.4:1, unreadable
+COLOURS = ['purple', 'red', 'blue', 'orange', 'green', 'teal', 'pink']
 
 
 def die(msg):

@@ -27,12 +27,20 @@
   --red:#e4372e;  --blue:#2f6be0;  --green:#12a05c;
   --purple:#7b4ce0; --orange:#f2892b; --teal:#0d9b9b; --pink:#e0479e;
   --yellow:#ffd23f;
+  /* --ink flips to cream in dark mode, which is right for text and borders but
+     wrong for these three, so they get their own values */
+  --on:#fff;          /* text on an accent fill */
+  --edge:#16161a;     /* hard drop shadows and letter outlines */
+  --mark:#ffd23f;     /* highlighter band behind .hl */
+  color-scheme:light dark;
 }
 @media (prefers-color-scheme: dark){
   :root{
     --ink:#efe9dc; --paper:#14151a; --panel:#1e2027; --mute:#a19c92;
     --red:#ff6a58; --blue:#6d9bff; --green:#37cd85; --purple:#a982ff;
     --orange:#ffab52; --teal:#3ecfcf; --pink:#ff76bd; --yellow:#ffdd6b;
+    /* dark-mode accents are light, so white text on them drops to ~2:1 */
+    --on:#16161a; --edge:#000; --mark:rgba(255,221,107,.3);
   }
 }
 *{box-sizing:border-box}
@@ -52,7 +60,7 @@ a{color:var(--ink)}
 /* ---------- comic panel ---------- */
 .panel{
   position:relative;background:var(--panel);border:3px solid var(--ink);
-  box-shadow:8px 8px 0 var(--ink);padding:24px 26px;margin:0 0 38px;
+  box-shadow:8px 8px 0 var(--edge);padding:24px 26px;margin:0 0 38px;
 }
 .panel::before{ /* colored screentone inside the panel */
   content:"";position:absolute;inset:0;pointer-events:none;
@@ -68,17 +76,17 @@ h1{
   margin:0;font-size:clamp(46px,10vw,84px);line-height:.92;
   font-family:"Bangers","Chalkboard SE",cursive;letter-spacing:.015em;
   color:var(--yellow);
-  text-shadow:3px 3px 0 var(--ink), -2px -2px 0 var(--ink), 2px -2px 0 var(--ink),
-              -2px 2px 0 var(--ink), 6px 6px 0 var(--red);
+  text-shadow:3px 3px 0 var(--edge), -2px -2px 0 var(--edge), 2px -2px 0 var(--edge),
+              -2px 2px 0 var(--edge), 6px 6px 0 var(--red);
 }
 .cn{font-size:clamp(19px,3.4vw,24px);font-weight:700;letter-spacing:.3em;color:var(--mute);margin-top:12px}
 
 .chap{display:flex;align-items:center;gap:12px;margin:0 0 20px;font-size:17px;font-weight:400}
 .chap b{
   font-family:"Bangers","Chalkboard SE",cursive;font-weight:400;
-  background:var(--c);color:#fff;font-size:23px;letter-spacing:.1em;
+  background:var(--c);color:var(--on);font-size:23px;letter-spacing:.1em;
   padding:2px 14px 1px;border:3px solid var(--ink);
-  box-shadow:4px 4px 0 var(--ink);transform:rotate(-1.2deg);white-space:nowrap;
+  box-shadow:4px 4px 0 var(--edge);transform:rotate(-1.2deg);white-space:nowrap;
 }
 .chap i{flex:1;height:4px;background:var(--ink)}
 .chap em{font-style:italic;font-size:14px;color:var(--mute)}
@@ -95,13 +103,13 @@ h1{
 .affil b{font-weight:700}
 .affil span{color:var(--mute)}
 .contact{display:inline-flex;align-items:center;gap:8px;margin:12px 0 0;
-  padding:5px 10px 4px;border:2.5px solid var(--ink);background:#fff;
+  padding:5px 10px 4px;border:2.5px solid var(--ink);background:var(--panel);
   box-shadow:3px 3px 0 var(--yellow);font-size:14.5px;transform:rotate(-.4deg)}
 .contact b{font-family:"Bangers","Chalkboard SE",cursive;font-size:17px;
   letter-spacing:.06em;color:var(--red);font-weight:400}
 .contact a{color:var(--ink);font-weight:700;text-decoration:none;border-bottom:2px solid var(--blue)}
 .contact a:hover{color:var(--blue)}
-.hl{background:linear-gradient(transparent 58%,var(--yellow) 58%,var(--yellow) 94%,transparent 94%);font-weight:700}
+.hl{background:linear-gradient(transparent 58%,var(--mark) 58%,var(--mark) 94%,transparent 94%);font-weight:700}
 
 .bubble{
   position:relative;margin:24px 0 0;padding:15px 19px;
@@ -115,14 +123,14 @@ h1{
 .links a{
   font-family:"Bangers","Chalkboard SE",cursive;font-size:19px;letter-spacing:.07em;
   display:inline-block;border:3px solid var(--ink);padding:7px 16px 4px;
-  text-decoration:none;color:var(--ink);background:var(--panel);box-shadow:4px 4px 0 var(--ink);
+  text-decoration:none;color:var(--ink);background:var(--panel);box-shadow:4px 4px 0 var(--edge);
 }
-.links a:nth-child(1){background:var(--red);color:#fff}
-.links a:nth-child(2){background:var(--blue);color:#fff}
-.links a:nth-child(3){background:var(--green);color:#fff}
-.links a:nth-child(4){background:var(--yellow);color:var(--ink)}
-.links a:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
-.links a.copied{background:var(--green)!important;color:#fff!important}
+.links a:nth-child(1){background:var(--red);color:var(--on)}
+.links a:nth-child(2){background:var(--blue);color:var(--on)}
+.links a:nth-child(3){background:var(--green);color:var(--on)}
+.links a:nth-child(4){background:var(--yellow);color:#16161a}
+.links a:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--edge)}
+.links a.copied{background:var(--green)!important;color:var(--on)!important}
 /* shown only if both copy paths fail: the address itself, selectable */
 .links a.reveal{background:var(--panel)!important;color:var(--ink)!important;
   font-family:inherit;font-size:15px;font-weight:700;letter-spacing:0;user-select:all}
@@ -131,7 +139,7 @@ h1{
 .grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
 .card{border:3px solid var(--ink);padding:16px;background:var(--panel);box-shadow:5px 5px 0 var(--c)}
 .card h3{margin:0;font-family:"Bangers","Chalkboard SE",cursive;font-weight:400;font-size:25px;
-  letter-spacing:.03em;color:var(--c);-webkit-text-stroke:.5px var(--ink)}
+  letter-spacing:.03em;color:var(--c);-webkit-text-stroke:.5px var(--edge)}
 .card p{margin:8px 0 0;font-size:15px;color:var(--mute)}
 
 /* ---------- paper panels ---------- */
@@ -149,7 +157,7 @@ h1{
    white slab on a dark panel glares at night. Dim it at rest, full brightness
    on the card you are actually looking at. */
 @media (prefers-color-scheme:dark){
-  .pfig{filter:brightness(.86) saturate(.95);transition:filter .25s ease}
+  .pfig,.xplogo,.alogo{filter:brightness(.86) saturate(.95);transition:filter .25s ease}
   .pcard:hover .pfig,.pcard:focus-within .pfig{filter:none}
 }
 .pbody{padding:13px 15px 15px}
@@ -160,7 +168,7 @@ h1{
 .pn{margin:8px 0 0;font-size:14px}
 .tags{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 8px}
 .tag{font-family:"Bangers","Chalkboard SE",cursive;font-size:15px;letter-spacing:.06em;
-  border:2.5px solid var(--ink);padding:1px 9px 0;background:var(--c);color:#fff;line-height:1.3}
+  border:2.5px solid var(--ink);padding:1px 9px 0;background:var(--c);color:var(--on);line-height:1.3}
 .tag--role{background:var(--panel);color:var(--ink)}
 .plink{margin:4px 0 0;font-size:13.5px;display:flex;flex-wrap:wrap;gap:0 4px}
 /* padded so the hit area clears 36px on a phone — these were 16px tall */
@@ -186,7 +194,7 @@ h1{
 .xplogo img.hithink-mark{width:94px;height:94px}
 .xpitem:hover .xplogo img{transform:scale(1.08) rotate(-2deg)}
 .xprole{margin:0;font-family:"Bangers","Chalkboard SE",cursive;font-weight:400;
-  font-size:23px;letter-spacing:.03em;color:var(--c);-webkit-text-stroke:.5px var(--ink)}
+  font-size:23px;letter-spacing:.03em;color:var(--c);-webkit-text-stroke:.5px var(--edge)}
 .xpwhere{margin:3px 0 0;font-size:15.5px;font-weight:700;line-height:1.3}
 .xpmeta{margin:4px 0 0;font-size:13px;color:var(--mute)}
 .xpwhat{margin:9px 0 0;font-size:14.5px;color:var(--mute)}
@@ -199,7 +207,7 @@ h1{
   background:#fff;border:2.5px solid var(--ink);margin-bottom:13px}
 .alogo img{max-width:88%;max-height:66px;object-fit:contain}
 .aprize{margin:0;font-family:"Bangers","Chalkboard SE",cursive;font-size:24px;letter-spacing:.04em;
-  line-height:1.15;color:var(--c);-webkit-text-stroke:.5px var(--ink)}
+  line-height:1.15;color:var(--c);-webkit-text-stroke:.5px var(--edge)}
 .aname{margin:5px 0 0;font-size:14.5px;line-height:1.35}
 .ayear{margin:8px 0 0;font-family:"Bangers","Chalkboard SE",cursive;font-size:18px;
   letter-spacing:.1em;color:var(--mute)}
@@ -249,7 +257,7 @@ footer .toon{font-size:24px;color:var(--ink)}
    come for free instead of being hand-rolled. */
 #lightbox{
   border:4px solid var(--ink);background:#fff;padding:0;max-width:min(94vw,1300px);
-  max-height:92vh;box-shadow:12px 12px 0 var(--ink);
+  max-height:92vh;box-shadow:12px 12px 0 var(--edge);
 }
 #lightbox::backdrop{background:rgba(10,10,12,.78)}
 #lightbox img{display:block;max-width:100%;max-height:calc(92vh - 52px);width:auto}
@@ -260,23 +268,23 @@ footer .toon{font-size:24px;color:var(--ink)}
 #lightbox .lbcap{font-size:12.5px;color:var(--mute);line-height:1.3}
 #lightbox .lbx{
   font-family:"Bangers","Chalkboard SE",cursive;font-size:20px;line-height:1;
-  border:3px solid var(--ink);background:var(--red);color:#fff;cursor:pointer;
-  padding:5px 12px 3px;box-shadow:3px 3px 0 var(--ink);flex:0 0 auto;
+  border:3px solid var(--ink);background:var(--red);color:var(--on);cursor:pointer;
+  padding:5px 12px 3px;box-shadow:3px 3px 0 var(--edge);flex:0 0 auto;
 }
-#lightbox .lbx:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+#lightbox .lbx:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--edge)}
 
 /* ---------- back to top ---------- */
 .totop{
   position:fixed;right:18px;bottom:18px;z-index:40;
   width:52px;height:52px;border-radius:50%;cursor:pointer;
-  border:3px solid var(--ink);background:var(--yellow);color:var(--ink);
-  box-shadow:4px 4px 0 var(--ink);
+  border:3px solid var(--ink);background:var(--yellow);color:#16161a;
+  box-shadow:4px 4px 0 var(--edge);
   font-family:"Bangers","Chalkboard SE",cursive;font-size:26px;line-height:1;
   opacity:0;pointer-events:none;transform:translateY(10px);
   transition:opacity .25s ease,transform .25s ease,box-shadow .2s ease;
 }
 .totop.show{opacity:1;pointer-events:auto;transform:none}
-.totop:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+.totop:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--edge)}
 
 /* keyboard focus was invisible before this */
 a:focus-visible,button:focus-visible{
@@ -305,7 +313,7 @@ a:focus-visible,button:focus-visible{
 }
 
 @media(max-width:560px){
-  .panel{padding:18px 16px;box-shadow:5px 5px 0 var(--ink)}
+  .panel{padding:18px 16px;box-shadow:5px 5px 0 var(--edge)}
   .tiltL,.tiltR{transform:none}
   .shot{flex:0 0 100%;width:100%;height:200px}
   /* the caption was squeezing the chapter rule down to 0px wide; give it its
@@ -315,7 +323,7 @@ a:focus-visible,button:focus-visible{
   .chap em{flex:1 0 100%;order:3;margin-top:1px}
   .chap em .wide{display:none}   /* you tap, you do not click */
   .totop{right:12px;bottom:12px;width:46px;height:46px;font-size:22px}
-  h1{text-shadow:2px 2px 0 var(--ink),-1.5px -1.5px 0 var(--ink),1.5px -1.5px 0 var(--ink),-1.5px 1.5px 0 var(--ink),6px 6px 0 var(--red)}
+  h1{text-shadow:2px 2px 0 var(--edge),-1.5px -1.5px 0 var(--edge),1.5px -1.5px 0 var(--edge),-1.5px 1.5px 0 var(--edge),6px 6px 0 var(--red)}
 }
 </style>
 </head>
@@ -466,7 +474,7 @@ a:focus-visible,button:focus-visible{
         </div>
       </article>
 
-      <article class="pcard" style="--c:var(--yellow)">
+      <article class="pcard" style="--c:var(--blue)">
         <a class="pfig" href="figs/gtr.webp" style="aspect-ratio:1200/636"><img loading="lazy" decoding="async" src="figs/gtr.webp" alt="GTR-Mamba architecture: rotation, geo and time encoders feeding GTR SSM layers with manifold-tangent recurrence on the Lorentz model"></a>
         <div class="pbody">
           <div class="tags"><span class="tag">arXiv:2510.22942</span></div>
@@ -492,7 +500,7 @@ a:focus-visible,button:focus-visible{
         <p class="xpwhat">NLP/LLM systems and robotics-related research and engineering.</p>
       </div>
       <div class="xpitem" style="--c:var(--teal)">
-        <div class="xplogo"><img class="wide" loading="lazy" decoding="async" src="logos/air.png" alt="Institute for AI Industry Research, Tsinghua University logo"></div>
+        <div class="xplogo"><img class="wide" loading="lazy" decoding="async" src="logos/air.webp" alt="Institute for AI Industry Research, Tsinghua University logo"></div>
         <p class="xprole">Research Intern</p>
         <p class="xpwhere">Institute for AI Industry Research (AIR), Tsinghua University</p>
         <p class="xpmeta">Advisor: Yan Wang · Jan 2026 – present</p>
@@ -500,7 +508,7 @@ a:focus-visible,button:focus-visible{
         benchmark for long-horizon robot tasks.</p>
       </div>
       <div class="xpitem" style="--c:var(--purple)">
-        <div class="xplogo"><img class="mark" loading="lazy" decoding="async" src="logos/zjut.png" alt="Zhejiang University of Technology logo"></div>
+        <div class="xplogo"><img class="mark" loading="lazy" decoding="async" src="logos/zjut.webp" alt="Zhejiang University of Technology logo"></div>
         <p class="xprole">Undergraduate Researcher</p>
         <p class="xpwhere">Zhejiang University of Technology</p>
         <p class="xpmeta">Advisor: Jianwei Zheng · 2025 – present</p>
@@ -539,7 +547,7 @@ a:focus-visible,button:focus-visible{
   <footer>
     <p class="toon">Thanks for reading!</p>
     <p>peijieyuan@zjut.edu.cn · Hangzhou, China</p>
-    <p class="upd">Last updated July 2026</p>
+    <p class="upd">Last updated September 2026</p>
   </footer>
 
 </div>
