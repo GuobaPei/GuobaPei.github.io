@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Jieyuan Pei — 裴杰远</title>
-<meta name="description" content="Jieyuan Pei (裴杰远) — undergraduate researcher at Zhejiang University of Technology. Neural operators, spatial–spectral fusion, embodied VLA.">
+<meta name="description" content="Jieyuan Pei (裴杰远) — undergraduate researcher at Zhejiang University of Technology. Neural operators and spatial–spectral fusion, world models for autonomous driving, multimodal models.">
 <link rel="canonical" href="https://guobapei.github.io/">
 <!-- comic-style favicon, inlined so there is no extra request -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23ffd23f' stroke='%2316161a' stroke-width='3'/%3E%3Ctext x='16' y='23' font-family='Impact,Haettenschweiler,sans-serif' font-size='18' text-anchor='middle' fill='%2316161a'%3EJP%3C/text%3E%3C/svg%3E">
 <!-- link previews when the page is shared -->
 <meta property="og:type" content="profile">
 <meta property="og:title" content="Jieyuan Pei — 裴杰远">
-<meta property="og:description" content="Physical intelligence you can trust outside the lab. Neural operators for physics, spatial–spectral operators for imaging, world models for embodied agents.">
+<meta property="og:description" content="Physical intelligence you can trust outside the lab. Neural operators and spatial–spectral fusion for science, world models for autonomous driving, multimodal models for embodied agents.">
 <meta property="og:url" content="https://guobapei.github.io/">
 <meta property="og:image" content="https://guobapei.github.io/me.webp">
 <meta name="twitter:card" content="summary">
@@ -346,9 +346,10 @@ a:focus-visible,button:focus-visible{
       <div class="bubble">
         I want to build <span class="hl">physical intelligence you can trust outside the
         lab</span> — models that still hold up when the real world shifts scale, degrades, or
-        hands them something they have never seen. I chase that in both directions at once:
-        letting science compute what it could not compute before, and letting embodied agents
-        act reliably in the world instead of only on a benchmark.
+        hands them something they have never seen. I chase that along three threads: neural
+        operators that let science compute what it could not before, world models for
+        autonomous driving, and multimodal models that act reliably in the world instead of
+        only on a benchmark.
         <br><br>Applying for <b>2027 Fall MPhil / PhD</b>.
       </div>
       <div class="links">
@@ -363,22 +364,22 @@ a:focus-visible,button:focus-visible{
 
   <!-- ================= RESEARCH ================= -->
   <section class="panel tiltR" style="--c:var(--green)">
-    <h2 class="chap" style="--c:var(--green)"><b>Research</b><i></i><em>three threads, one method</em></h2>
+    <h2 class="chap" style="--c:var(--green)"><b>Research</b><i></i><em>three threads</em></h2>
     <div class="grid3">
-      <div class="card" style="--c:var(--red)">
-        <h3>Embodied VLA</h3>
-        <p>Robot memory, long-horizon tasks, test-time training, world models, and decision
-        generalization for vision–language–action policies.</p>
-      </div>
       <div class="card" style="--c:var(--blue)">
-        <h3>AI for Physics</h3>
-        <p>Neural operators, PDE surrogates, engineering simulation, and scientific ML that
-        transfers across geometries and resolutions.</p>
+        <h3>AI for Science</h3>
+        <p>Neural operators for PDEs, and spatial–spectral fusion for hyperspectral and
+        remote-sensing imaging, built to transfer across scales, meshes and degradations.</p>
+      </div>
+      <div class="card" style="--c:var(--red)">
+        <h3>Autonomous Driving</h3>
+        <p>World models for end-to-end driving: predicting how a scene unfolds, and scoring
+        candidate trajectories with it.</p>
       </div>
       <div class="card" style="--c:var(--green)">
-        <h3>AI for Remote Sensing</h3>
-        <p>Spatial–spectral fusion, cross-scale and degradation modelling, operator-based
-        imaging under realistic transfer.</p>
+        <h3>Multimodal Models</h3>
+        <p>Vision–language–action policies and multimodal LLMs, including memory for
+        long-horizon robot tasks.</p>
       </div>
     </div>
   </section>
@@ -418,6 +419,27 @@ a:focus-visible,button:focus-visible{
       </article>
 
       <article class="pcard" style="--c:var(--blue)">
+        <a class="pfig" href="figs/starfus.webp" style="aspect-ratio:1200/369"><img loading="lazy" decoding="async" src="figs/starfus.webp" alt="StarFus-Net U-Net with asymmetric spatial measurement and spectral prior paths"></a>
+        <div class="pbody">
+          <div class="tags"><span class="tag">ICASSP 2026</span></div>
+          <p class="pt"><a href="https://doi.org/10.1109/ICASSP55912.2026.11461717">Asymmetric StarFus: Learning Incoherent Measurements for Semantics-Aware Spatial–Spectral Fusion</a></p>
+          <p class="pa"><u>Jieyuan Pei</u>, Wei Li, Zhuoxuan Li, Junwei Zhu, Chuangjie Fang, Jianwei Zheng</p>
+          <p class="plink"><a href="https://doi.org/10.1109/ICASSP55912.2026.11461717">Paper →</a>
+          &nbsp;<a href="https://github.com/GuobaPei/STARFUS">Code →</a></p>
+        </div>
+      </article>
+
+      <article class="pcard" style="--c:var(--orange)">
+        <a class="pfig" href="figs/gtr.webp" style="aspect-ratio:1200/636"><img loading="lazy" decoding="async" src="figs/gtr.webp" alt="GTR-Mamba architecture: rotation, geo and time encoders feeding GTR SSM layers with manifold-tangent recurrence on the Lorentz model"></a>
+        <div class="pbody">
+          <div class="tags"><span class="tag">arXiv:2510.22942</span></div>
+          <p class="pt"><a href="https://arxiv.org/abs/2510.22942">GTR-Mamba: Geometry-to-Tangent Routing Mamba for Hyperbolic POI Recommendation</a></p>
+          <p class="pa">Zhuoxuan Li<sup>*</sup>, <u>Jieyuan Pei</u><sup>*</sup>, Tangwei Ye, Zhongyuan Lai, Zihan Liu, Fengyuan Xu, Qi Zhang, Liang Hu</p>
+          <p class="plink"><a href="https://arxiv.org/abs/2510.22942">arXiv →</a></p>
+        </div>
+      </article>
+
+      <article class="pcard" style="--c:var(--green)">
         <a class="pfig" href="figs/lso.webp" style="aspect-ratio:1200/334"><img loading="lazy" decoding="async" src="figs/lso.webp" alt="Latent spectral operator pipeline: patchify, coordinate-to-latent projection, solve on a trigonometric basis, project back"></a>
         <div class="pbody">
           <div class="tags"><span class="tag">ICML 2026</span></div>
@@ -430,18 +452,7 @@ a:focus-visible,button:focus-visible{
         </div>
       </article>
 
-      <article class="pcard" style="--c:var(--orange)">
-        <a class="pfig" href="figs/starfus.webp" style="aspect-ratio:1200/369"><img loading="lazy" decoding="async" src="figs/starfus.webp" alt="StarFus-Net U-Net with asymmetric spatial measurement and spectral prior paths"></a>
-        <div class="pbody">
-          <div class="tags"><span class="tag">ICASSP 2026</span></div>
-          <p class="pt"><a href="https://doi.org/10.1109/ICASSP55912.2026.11461717">Asymmetric StarFus: Learning Incoherent Measurements for Semantics-Aware Spatial–Spectral Fusion</a></p>
-          <p class="pa"><u>Jieyuan Pei</u>, Wei Li, Zhuoxuan Li, Junwei Zhu, Chuangjie Fang, Jianwei Zheng</p>
-          <p class="plink"><a href="https://doi.org/10.1109/ICASSP55912.2026.11461717">Paper →</a>
-          &nbsp;<a href="https://github.com/GuobaPei/STARFUS">Code →</a></p>
-        </div>
-      </article>
-
-      <article class="pcard" style="--c:var(--green)">
+      <article class="pcard" style="--c:var(--teal)">
         <a class="pfig" href="figs/tgrs.webp" style="aspect-ratio:1200/376"><img loading="lazy" decoding="async" src="figs/tgrs.webp" alt="Five-stage fusion pipeline with parallel spatial and frequency branches and a semantic transformer"></a>
         <div class="pbody">
           <div class="tags"><span class="tag">IEEE TGRS</span></div>
@@ -451,7 +462,7 @@ a:focus-visible,button:focus-visible{
         </div>
       </article>
 
-      <article class="pcard" style="--c:var(--teal)">
+      <article class="pcard" style="--c:var(--pink)">
         <a class="pfig" href="figs/kdd.webp" style="aspect-ratio:1200/577"><img loading="lazy" decoding="async" src="figs/kdd.webp" alt="Mag-Mamba framework: magnetic phase encoder feeding a Mamba layer with rotation control"></a>
         <div class="pbody">
           <div class="tags"><span class="tag">KDD 2026 · Oral</span></div>
@@ -461,7 +472,7 @@ a:focus-visible,button:focus-visible{
         </div>
       </article>
 
-      <article class="pcard" style="--c:var(--pink)">
+      <article class="pcard" style="--c:var(--purple)">
         <a class="pfig" href="figs/robomem.webp" style="aspect-ratio:1200/584"><img loading="lazy" decoding="async" src="figs/robomem.webp" alt="RoboMemArena overview: annotation pipeline, dataset statistics, baseline comparison, and real-world evaluation"></a>
         <div class="pbody">
           <div class="tags"><span class="tag">arXiv:2605.10921</span></div>
@@ -471,16 +482,6 @@ a:focus-visible,button:focus-visible{
           <p class="plink"><a href="https://arxiv.org/abs/2605.10921">arXiv →</a>
           &nbsp;<a href="https://robomemarena.github.io">Project page →</a>
           &nbsp;<a href="https://github.com/OpenHelix-Team/RoboMemArena">Code →</a></p>
-        </div>
-      </article>
-
-      <article class="pcard" style="--c:var(--blue)">
-        <a class="pfig" href="figs/gtr.webp" style="aspect-ratio:1200/636"><img loading="lazy" decoding="async" src="figs/gtr.webp" alt="GTR-Mamba architecture: rotation, geo and time encoders feeding GTR SSM layers with manifold-tangent recurrence on the Lorentz model"></a>
-        <div class="pbody">
-          <div class="tags"><span class="tag">arXiv:2510.22942</span></div>
-          <p class="pt"><a href="https://arxiv.org/abs/2510.22942">GTR-Mamba: Geometry-to-Tangent Routing Mamba for Hyperbolic POI Recommendation</a></p>
-          <p class="pa">Zhuoxuan Li<sup>*</sup>, <u>Jieyuan Pei</u><sup>*</sup>, Tangwei Ye, Zhongyuan Lai, Zihan Liu, Fengyuan Xu, Qi Zhang, Liang Hu</p>
-          <p class="plink"><a href="https://arxiv.org/abs/2510.22942">arXiv →</a></p>
         </div>
       </article>
 
@@ -506,14 +507,6 @@ a:focus-visible,button:focus-visible{
         <p class="xpmeta">Advisor: Yan Wang · Jan 2026 – present</p>
         <p class="xpwhat">World models for autonomous driving, and an embodied-AI memory
         benchmark for long-horizon robot tasks.</p>
-      </div>
-      <div class="xpitem" style="--c:var(--purple)">
-        <div class="xplogo"><img class="mark" loading="lazy" decoding="async" src="logos/zjut.webp" alt="Zhejiang University of Technology logo"></div>
-        <p class="xprole">Undergraduate Researcher</p>
-        <p class="xpwhere">Zhejiang University of Technology</p>
-        <p class="xpmeta">Advisor: Jianwei Zheng · 2025 – present</p>
-        <p class="xpwhat">Neural operators for PDEs, and spatial–spectral fusion for
-        hyperspectral and remote-sensing imaging.</p>
       </div>
     </div>
   </section>
