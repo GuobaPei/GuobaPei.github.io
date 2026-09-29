@@ -2,8 +2,9 @@
 """Add a paper card to index.html.
 
 Does the mechanical parts: pulls the figure out of the PDF, trims it, converts
-it to WebP, measures the aspect ratio, picks the next accent colour, and splices
-the card into the papers grid. It does not push -- look at the page first.
+it to WebP (plus the 800px copy the card shows), measures the aspect ratio,
+picks the next accent colour, and splices the card into the papers grid. It
+does not push -- look at the page first.
 
     ./add-paper.py --pdf ~/Downloads/new.pdf --fig-page 3 \
         --venue "NeurIPS 2026" \
@@ -120,6 +121,23 @@ def trim_and_webp(src_png, dest_webp, width=1200):
     return im.width, im.height
 
 
+CARD_W = 800
+
+
+def card_copy(fig):
+    """figs/x.webp -> figs/x-card.webp, the file the card itself loads. Cards show
+    figures 300-460 CSS px wide, so the full 1200px file is only fetched when the
+    lightbox opens -- about half the bytes on a slow link."""
+    from PIL import Image
+    im = Image.open(os.path.join(FIGS, fig))
+    im = im.convert('RGBA' if 'A' in im.getbands() else 'RGB')
+    if im.width > CARD_W:
+        im = im.resize((CARD_W, round(im.height * CARD_W / im.width)), Image.LANCZOS)
+    name = fig[:-len('.webp')] + '-card.webp'
+    im.save(os.path.join(FIGS, name), 'WEBP', quality=82, method=6)
+    return name
+
+
 def next_colour(html):
     used = re.findall(r'<article class="pcard" style="--c:var\(--(\w+)\)', html)
     return COLOURS[len(used) % len(COLOURS)]
@@ -129,7 +147,7 @@ def bold_me(authors):
     return re.sub(r'\b(Jieyuan Pei)\b', r'<u>\1</u>', authors)
 
 
-def build_card(a, colour, fig, dims):
+def build_card(a, colour, fig, dims, thumb):
     esc = lambda s: (s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;'))
     title = esc(a.title)
     head = f'<a href="{esc(a.paper)}">{title}</a>' if a.paper else title
@@ -137,7 +155,7 @@ def build_card(a, colour, fig, dims):
     if fig:
         w, h = dims
         L.append(f'        <a class="pfig" href="figs/{fig}" style="aspect-ratio:{w}/{h}">'
-                 f'<img loading="lazy" decoding="async" src="figs/{fig}" '
+                 f'<img loading="lazy" decoding="async" src="figs/{thumb}" '
                  f'alt="{esc(a.alt or a.title)}"></a>')
     L.append('        <div class="pbody">')
     # Venue only. Submission status is deliberately not shown anywhere: an
@@ -215,7 +233,8 @@ def main():
         os.remove(tmp)
 
     colour = next_colour(html)
-    card = build_card(a, colour, fig_name, dims)
+    thumb = card_copy(fig_name) if fig_name else None
+    card = build_card(a, colour, fig_name, dims, thumb)
 
     # Splice in after the last existing card. Anchoring on whatever markup
     # follows the grid is brittle -- that is exactly how this broke once, when

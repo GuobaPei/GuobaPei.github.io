@@ -14,7 +14,8 @@ Find which page holds the figure you want:
 ./add-paper.py --title x --venue x --pdf ~/Downloads/new.pdf --list-figures
 ```
 
-Then add the card. It extracts the figure, trims it, converts to WebP, measures
+Then add the card. It extracts the figure, trims it, converts to WebP (plus the
+800px copy the card loads; the full size only opens in the lightbox), measures
 the aspect ratio, picks the next accent colour, bolds your name in the author
 list, and refreshes the "last updated" line:
 
