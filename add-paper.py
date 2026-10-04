@@ -143,7 +143,8 @@ def next_colour(html):
     return COLOURS[len(used) % len(COLOURS)]
 
 
-def bold_me(authors):
+def format_authors(authors):
+    authors = re.sub(r'([*†]+)', r'<sup>\1</sup>', authors)   # "Name*" equal, "Name†" corresponding
     return re.sub(r'\b(Jieyuan Pei)\b', r'<u>\1</u>', authors)
 
 
@@ -163,7 +164,7 @@ def build_card(a, colour, fig, dims, thumb):
     L.append(f'          <div class="tags"><span class="tag">{esc(a.venue)}</span></div>')
     L.append(f'          <p class="pt">{head}</p>')
     if a.authors:
-        L.append(f'          <p class="pa">{bold_me(esc(a.authors))}</p>')
+        L.append(f'          <p class="pa">{format_authors(esc(a.authors))}</p>')
     if a.note:
         L.append(f'          <p class="pn">{esc(a.note)}</p>')
     links = []
@@ -180,7 +181,7 @@ def main():
     p = argparse.ArgumentParser(description='Add a paper card to the homepage.')
     p.add_argument('--title', required=True)
     p.add_argument('--venue', required=True, help='e.g. "NeurIPS 2026" or "arXiv:2606.01234"')
-    p.add_argument('--authors', default='', help='full list in printed order')
+    p.add_argument('--authors', default='', help='full list in printed order; Name* = equal contribution, Name† = corresponding')
     p.add_argument('--note', default='', help='one-line headline result')
     p.add_argument('--paper', default='')
     p.add_argument('--code', default='')

@@ -17,14 +17,15 @@ Find which page holds the figure you want:
 Then add the card. It extracts the figure, trims it, converts to WebP (plus the
 800px copy the card loads; the full size only opens in the lightbox), measures
 the aspect ratio, picks the next accent colour, bolds your name in the author
-list, and refreshes the "last updated" line:
+list, turns `Name*` (equal contribution) and `Name†` (corresponding author) into
+superscripts, and refreshes the "last updated" line:
 
 ```bash
 ./add-paper.py \
   --pdf ~/Downloads/new.pdf --fig-page 3 \
   --venue "NeurIPS 2026" \
   --title "Full Paper Title" \
-  --authors "First Author, Jieyuan Pei, Last Author" \
+  --authors "Jieyuan Pei*, Second Author*, Last Author†" \
   --note "One-line headline result." \
   --paper https://openreview.net/forum?id=XXXX \
   --code  https://github.com/GuobaPei/repo
