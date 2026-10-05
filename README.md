@@ -6,6 +6,10 @@ Personal academic homepage of Jieyuan Pei (裴杰远) — 浙江工业大学 / Z
 
 Static `index.html`, no build step. Edit, commit, push — Pages redeploys.
 
+Pageviews: <https://guoba.goatcounter.com> (log in). A browser stops counting
+your visits after opening <https://guobapei.github.io/#toggle-goatcounter> once;
+opening it again turns counting back on.
+
 ## Adding a paper
 
 Find which page holds the figure you want:
