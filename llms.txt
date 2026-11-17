@@ -5,6 +5,11 @@
 ## Profile
 - [Academic homepage](https://guobapei.github.io/): Biography and publications.
 
+## SuperGlance (arXiv 2026)
+- [SuperGlance project page](https://guobapei.github.io/SuperGlance/): Video, method and results; a vision-language model that plans in one forward pass and still answers questions.
+- [SuperGlance paper](https://arxiv.org/abs/2611.19138): arXiv:2611.19138.
+- [SuperGlance code](https://github.com/GuobaPei/SuperGlance): Training and evaluation code.
+
 ## Hyperbolic Neural Operator (ICML 2026)
 - [HNO research resources](https://guobapei.github.io/Hyperbolic-Neural-Operator/llms.txt): Paper, full text, code, benchmark summary and citation.
 - [HNO abstract and results](https://guobapei.github.io/Hyperbolic-Neural-Operator/paper.html): Lorentz-distance attention for multiscale PDE surrogate modeling.
