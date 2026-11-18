@@ -100,12 +100,15 @@ h1{
 .affil li{display:flex;align-items:center;gap:11px}
 .affil b{font-weight:700}
 .affil span{color:var(--mute)}
-/* institution marks: small white tiles, like the experience logos below */
-.affil .lg{flex:none;width:34px;height:34px;display:grid;place-items:center;overflow:hidden;
-  background:#fff;border:2px solid var(--ink);box-shadow:2px 2px 0 var(--edge)}
-.affil .lg img{max-width:26px;max-height:26px}
-.affil .lg img.round{max-width:29px;max-height:29px} /* thin round seals read faint at 26px */
-.affil .lg img.pad{width:40px;height:40px;max-width:none;max-height:none;margin:-5px} /* hithink.svg has a wide margin; -5px keeps it centred in the 30px box */
+/* institution marks, bare on the panel, in one column so the text lines up */
+.affil .lg{flex:none;width:32px;height:32px;display:grid;place-items:center}
+.affil .lg img{max-width:28px;max-height:28px}
+.affil .lg img.round{max-width:31px;max-height:31px} /* thin round seals read faint when small */
+.affil .lg img.pad{width:44px;height:44px;max-width:none;max-height:none;margin:-6px} /* hithink.svg has a wide margin; -6px keeps it centred */
+@media (prefers-color-scheme:dark){
+  /* blue and purple marks vanish on the dark panel: white, the brand guides' light-on-dark version */
+  .affil .lg img.mono{filter:brightness(0) invert(1);opacity:.88}
+}
 .contact{display:inline-flex;align-items:center;gap:8px;margin:12px 0 0;
   padding:5px 10px 4px;border:2.5px solid var(--ink);background:var(--panel);
   box-shadow:3px 3px 0 var(--yellow);font-size:14.5px;transform:rotate(-.4deg)}
@@ -341,11 +344,11 @@ a:focus-visible,button:focus-visible{
       <h1>Jieyuan&nbsp;Pei</h1>
       <div class="cn" lang="zh-CN">裴 杰 远</div>
       <ul class="affil">
-        <li><i class="lg"><img src="logos/hkust-gz.webp" alt="" width="17" height="26"></i>
+        <li><i class="lg"><img class="mono" src="logos/hkust-gz.webp" alt="" width="18" height="28"></i>
           <div><b>Incoming MPhil · 2027</b><br><span>HKUST (Guangzhou) · with Prof. Hui Xiong</span></div></li>
-        <li><i class="lg"><img class="round" src="logos/zjut.webp" alt="" width="29" height="29"></i>
+        <li><i class="lg"><img class="round mono" src="logos/zjut.webp" alt="" width="31" height="31"></i>
           <div><b>B.Eng. Intelligent Science &amp; Technology</b><br><span>Zhejiang University of Technology · expected June 2027</span></div></li>
-        <li><i class="lg"><img class="round" src="logos/air-seal.webp" alt="" width="29" height="29"></i>
+        <li><i class="lg"><img class="round mono" src="logos/air-seal.webp" alt="" width="31" height="31"></i>
           <span>Research intern · AIR, Tsinghua University</span></li>
         <li><i class="lg"><img class="pad" src="logos/hithink.svg" alt=""></i>
           <span>AI research intern · Hithink RoyalFlush</span></li>
